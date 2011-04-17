@@ -35,7 +35,15 @@
 
 - semantic_form_for @episode do |form|
   #form_info
-    = form.inputs
+    - form.inputs do
+      = form.input :host
+      = form.input :guest
+      = form.input :recording_datetime, :as => :datepicker
+      = form.input :air_datetime, :as => :datepicker
+
+      = form.input :title
+      = form.input :description
+      
   - number = 0
   #form_questions{:style => "display:none"}
     - form.inputs :for => :questions do |question_form|
