@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  air_datetime: 2011-04-09 00:47:47
+  recoding_datetime: 2011-04-09 00:47:47
+  title: MyString
+  guest_id: 1
+  host_id: 1
+  description: MyText
+
+two:
+  air_datetime: 2011-04-09 00:47:47
+  recoding_datetime: 2011-04-09 00:47:47
+  title: MyString
+  guest_id: 1
+  host_id: 1
+  description: MyText

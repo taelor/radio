@@ -1,0 +1,5 @@
+- collection.each do |host|
+  .episode
+    %p.meta
+      %span.date= raw "#{link_to host.full_name, host} - #{link_to 'edit', [:edit, host]}"
+      %span.posted= "#{host.email}"

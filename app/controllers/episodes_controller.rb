@@ -1,0 +1,2 @@
+class EpisodesController < RadioController
+end

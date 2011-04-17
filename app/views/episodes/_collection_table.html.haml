@@ -1,0 +1,9 @@
+- collection.each do |episode|
+  .episode
+    %h2.title= link_to episode.title, episode
+    %p.meta
+      %span.date= episode.air_datetime.to_date
+      %span.posted= "Guest: #{episode.guest.try(:full_name)}"
+      %span.posted
+        = link_to "Edit", [:edit, episode]
+    <div style="clear: both;">&nbsp;</div>

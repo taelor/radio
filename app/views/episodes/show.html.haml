@@ -1,0 +1,23 @@
+%h1
+  = resource.title
+  %span= link_to "(edit)", [:edit, resource]
+%hr
+%span= "Air Date: #{resource.air_datetime.to_date}"
+%span= "Recording Date: #{resource.recording_datetime.to_date}"
+%br
+%br
+%p= resource.description
+%h3= "WIR"
+%hr
+%ol
+  - resource.stories.each do |story|
+    - if story.url.to_s.empty?
+      %li= story.title
+    - else
+      %li= link_to story.title, story.url
+    
+%h3= "Questions for #{resource.guest_name}"
+%hr
+%ol
+  - resource.questions.each do |question|
+    %li= question.body
