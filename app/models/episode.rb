@@ -13,12 +13,20 @@ class Episode < ActiveRecord::Base
     
   default_scope :order => 'air_datetime DESC'
   
+  def title
+    if attributes[:title].to_s.empty?
+      "(Title Needed)"
+    else
+      attributes[:title]
+    end
+  end
+  
   def guest_name
     guest ? guest.full_name : "None"
   end
   
   def shortened_title
-    shortened_title = title.size > 30 ? "#{title[0..27]}..." : title 
-    "#{air_datetime.to_date} - #{shortened_title}"
+    the_title = title.size > 30 ? "#{title[0..27]}..." : title 
+    "#{air_datetime.to_date} - #{the_title}"
   end
 end

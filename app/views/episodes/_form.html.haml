@@ -36,12 +36,13 @@
 - semantic_form_for @episode do |form|
   #form_info
     - form.inputs do
-      = form.input :host
-      = form.input :guest
-      =# form.input :recording_datetime, :as => :datepicker
-      = form.input :recording_datetime
+      = form.input :host, :collection => User.hosts.all
+      = form.input :guest, :collection => User.guests.all
       =# form.input :air_datetime, :as => :datepicker
       = form.input :air_datetime
+      =# form.input :recording_datetime, :as => :datepicker
+      = form.input :recording_datetime
+
 
       = form.input :title
       = form.input :description
