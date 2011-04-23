@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110418234601) do
+ActiveRecord::Schema.define(:version => 20110423181313) do
 
   create_table "conferences", :force => true do |t|
     t.date     "start_date"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20110418234601) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.boolean  "is_admin"
+    t.boolean  "is_publicist"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
