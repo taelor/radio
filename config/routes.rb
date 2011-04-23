@@ -9,6 +9,10 @@ Radio::Application.routes.draw do
   resources :episodes do
     resources :questions
     resources :stories
+    
+    collection do
+      get 'send_test_email'
+    end
   end
   resources :guests
   resources :hosts
