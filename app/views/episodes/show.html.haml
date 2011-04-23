@@ -3,6 +3,7 @@
   %span= link_to "(edit)", [:edit, resource]
 %hr
 %span= "Air Date: #{resource.air_datetime.to_date}"
+%br
 %span= "Recording Date: #{resource.recording_datetime.to_date}"
 %br
 %br
@@ -15,7 +16,8 @@
       %li= story.title
     - else
       %li= link_to story.title, story.url
-    
+
+%br    
 %h3= "Questions for #{resource.guest_name}"
 %hr
 %ol
