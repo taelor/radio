@@ -14,10 +14,10 @@ class Episode < ActiveRecord::Base
   default_scope :order => 'air_datetime DESC'
   
   def title
-    if attributes[:title].to_s.empty?
+    if attributes["title"].to_s.empty?
       "(Title Needed)"
     else
-      attributes[:title]
+      attributes["title"]
     end
   end
   
