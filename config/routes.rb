@@ -1,7 +1,14 @@
 Radio::Application.routes.draw do
+  devise_for :users do
+    get "/login" => "devise/sessions#new"
+    get "/logout" => "devise/sessions#destroy"
+  end
+  
+  resources :conferences
+
   resources :episodes do
     resources :questions
-      resources :stories
+    resources :stories
   end
   resources :guests
   resources :hosts
@@ -9,6 +16,7 @@ Radio::Application.routes.draw do
   
   match '/about' => 'home#about', :as => :about
   match '/contact' => 'home#contact', :as => :contact
+  
   root :to => "home#index"
   
 

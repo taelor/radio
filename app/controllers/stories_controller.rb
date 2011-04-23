@@ -1,2 +1,2 @@
-class StoriesController < InheritedResources::Base
+class StoriesController < RadioController
 end

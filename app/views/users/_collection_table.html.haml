@@ -1,4 +1,23 @@
-- collection.each do |user|
+%h3 Admins
+- collection.select{|u| u.is_admin? }.each do |user|
+  .episode
+    %p.meta
+      %span.date= raw "#{link_to user.full_name, user} - #{link_to 'edit', [:edit, user]}"
+      %span.posted= "#{user.email}"
+
+%br
+      
+%h3 Hosts
+- collection.select{ |u| u.is_host? }.each do |user|
+  .episode
+    %p.meta
+      %span.date= raw "#{link_to user.full_name, user} - #{link_to 'edit', [:edit, user]}"
+      %span.posted= "#{user.email}"
+      
+%br
+
+%h3 Guests
+- collection.select{|u| u.is_guest? }.each do |user|
   .episode
     %p.meta
       %span.date= raw "#{link_to user.full_name, user} - #{link_to 'edit', [:edit, user]}"

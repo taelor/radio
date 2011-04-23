@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  start_date: 2011-04-18
+  end_date: 2011-04-18
+  name: MyString
+  has_press_pass: false
+
+two:
+  start_date: 2011-04-18
+  end_date: 2011-04-18
+  name: MyString
+  has_press_pass: false

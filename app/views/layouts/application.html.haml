@@ -12,19 +12,22 @@
       #header
         #logo
           %h1
-            <a href="#">IMI's Tech Talk</a>
+            <a href="/">IMI's Tech Talk</a>
           %p educating the masses one byte at a time
           
       <!-- end #header -->
       #menu
         %ul
-          = raw layout_menu_item("Home", root_path)
-          = raw layout_menu_item("Episodes", :episodes)
-          = raw layout_menu_item("Guests", :guests)
-          = raw layout_menu_item("Hosts", :hosts)
-          = raw layout_menu_item("Users", :users)
+          - if current_user and current_user.is_host_or_admin?
+            = raw layout_menu_item("Episodes", :episodes)
+            = raw layout_menu_item("Users", :users)
+            = raw layout_menu_item("Conferences", :conferences)
           = raw layout_menu_item("About", :about)
           = raw layout_menu_item("Contact", :contact)
+          - if current_user
+            =raw layout_menu_item("Logout", :logout)
+          - else 
+            =raw layout_menu_item("Login", :login)
 
       <!-- end #menu -->
       #page
@@ -34,13 +37,14 @@
               = yield 
   			      
       <!-- end #content -->
-      #sidebar
-        %ul
-          %li
-            %h2 Recent and Upcoming Shows
-            %ul
-              - Episode.limit(4).each do |episode|
-                %li= link_to episode.shortened_title, episode, :class => "truncate"
+      - if current_user
+        #sidebar
+          %ul
+            %li
+              %h2 Recent and Upcoming Shows
+              %ul
+                - Episode.limit(4).each do |episode|
+                  %li= link_to episode.shortened_title, episode, :class => "truncate"
               
       <!-- end #sidebar -->
       <div style="clear: both;">&nbsp;</div>

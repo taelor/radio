@@ -29,6 +29,7 @@ gem 'has_scope'
 gem 'haml'
 gem 'formtastic'
 gem "jquery-rails"
+gem "devise"
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
