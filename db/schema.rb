@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110423181313) do
+ActiveRecord::Schema.define(:version => 20110423182357) do
 
   create_table "conferences", :force => true do |t|
     t.date     "start_date"
@@ -37,6 +37,10 @@ ActiveRecord::Schema.define(:version => 20110423181313) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string "name"
   end
 
   create_table "stories", :force => true do |t|
@@ -78,6 +82,7 @@ ActiveRecord::Schema.define(:version => 20110423181313) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.boolean  "is_admin"
+    t.integer  "role_id"
     t.boolean  "is_publicist"
   end
 

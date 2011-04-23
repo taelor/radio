@@ -1,0 +1,13 @@
+- semantic_form_for resource do |form|
+  - form.inputs do 
+    = form.input :first_name
+    = form.input :last_name
+    = form.input :land_line_phone
+    = form.input :cell_phone
+    = form.input :bio, :input_html => {:rows => 10}
+    - if current_user.host_or_admin?
+      = form.input :role
+    
+    
+  
+  = form.buttons
