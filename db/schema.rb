@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110423185138) do
+ActiveRecord::Schema.define(:version => 20110423204222) do
 
   create_table "conferences", :force => true do |t|
     t.date     "start_date"
@@ -69,8 +69,6 @@ ActiveRecord::Schema.define(:version => 20110423185138) do
     t.string   "cell_phone"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_host"
-    t.boolean  "is_guest"
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
     t.string   "password_salt"
     t.string   "authentication_token"
@@ -88,9 +86,7 @@ ActiveRecord::Schema.define(:version => 20110423185138) do
     t.integer  "failed_attempts",                     :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
-    t.boolean  "is_admin"
     t.integer  "role_id"
-    t.boolean  "is_publicist"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

@@ -5,11 +5,9 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :is_guest, :is_host, :is_admin, 
-    :first_name, :last_name, :bio, :land_line_phone, :cell_phone, :publicist_ids, :role_ids, :role
+    :first_name, :last_name, :bio, :land_line_phone, :cell_phone, :publicist_ids, :guest_ids, :role_id, :role
     
   belongs_to :role
-  
-  
   
   has_many :guests_public_relationships,
     :class_name => "PublicRelationship",
