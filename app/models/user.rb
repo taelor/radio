@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable#, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  #:registerable, :trackable, :validatable :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :rememberable, :recoverable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :is_guest, :is_host, :is_admin, 
@@ -15,12 +15,13 @@ class User < ActiveRecord::Base
   has_many :guests, 
     :through => :guests_public_relationships  
   
-    
   has_many :publicists_public_relationships,
     :class_name => "PublicRelationship",
     :foreign_key => :guest_id
   has_many :publicists, 
     :through => :publicists_public_relationships
+    
+  after_create :default_password_and_send_email
 
   scope :admins, lambda { includes(:role).where("roles.name = 'Admin'") }
   scope :hosts, lambda { includes(:role).where("roles.name = 'Host'") }
@@ -51,4 +52,14 @@ class User < ActiveRecord::Base
     role.publicist?
   end
   
+  protected
+    
+    def default_password_and_send_email
+      default_password = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{rand}--")[0,6]
+      self.password = default_password
+      self.password_confirmation = default_password
+      self.save
+      
+      UserMailer.new_user_email(self, default_password).deliver
+    end
 end
