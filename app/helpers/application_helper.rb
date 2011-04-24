@@ -12,4 +12,8 @@ module ApplicationHelper
       "<li>#{link_to(label, url)}</li>"
     end
   end
+  
+  def detail_row(title, value)
+    "<tr><th>#{title}</th><td>#{value}</td></tr>"
+  end
 end

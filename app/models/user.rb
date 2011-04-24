@@ -52,6 +52,10 @@ class User < ActiveRecord::Base
     role.publicist?
   end
   
+  def to_s
+    full_name
+  end
+  
   protected
     
     def default_password_and_send_email
