@@ -1,7 +1,8 @@
--if current_user.admin?
-  %p
-    = link_to "New", new_resource_url
-    |
+%p
+  - if current_user.has_permission_to(:edit, resource)
     = link_to "Edit", edit_resource_url(resource)
+  - if current_user.admin?
+    |
+    = link_to "New", new_resource_url
     |
     = link_to "Destroy", resource_url(resource), :confirm => "Are you sure?", :method => :delete

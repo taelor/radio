@@ -18,8 +18,9 @@
       <!-- end #header -->
       #menu
         %ul
-          - if current_user and current_user.host_or_admin?
+          - if current_user
             = raw layout_menu_item("Episodes", :episodes)
+          - if current_user and current_user.admin_or_host?
             = raw layout_menu_item("Users", :users)
             = raw layout_menu_item("Conferences", :conferences)
           = raw layout_menu_item("About", :about)
@@ -34,6 +35,21 @@
         #page-bgtop
           #page-bgbtm
             #content
+              
+              - flash.each do |key, message|
+                - if key == :notice
+                  - key = :highlight
+                .ui-widget
+                  %div{:class => "ui-state-#{key} ui-corner-all flash_message", :id => "key"}
+                    %p
+                      - if key == :error
+                        %span.ui-icon.ui-icon-alert{:style => "float:left; margin-right: .3em;"}
+                      - else
+                        %span.ui-icon.ui-icon-info{:style => "float:left; margin-right: .3em;"}
+                        
+                      = message
+                      
+              
               = yield 
   			      
       <!-- end #content -->

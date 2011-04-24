@@ -33,7 +33,7 @@ h3 {
 	font-size: 1.6em;
 }
 
-p, ul, ol {
+ul, ol {
 	margin-top: 0;
 	line-height: 180%;
 }
@@ -217,7 +217,7 @@ a:hover {
 #content {
 	float: right;
 	width: 620px;
-	padding: 30px 0px 0px 0px;
+	padding: 5px 0px 0px 0px;
 	font-size: 15px;
 }
 
@@ -409,4 +409,12 @@ a:hover {
 
 #footer a {
 	color: #464032;
+}
+
+table.detail th{
+  text-align:right;
+}
+
+.flash_message{
+  padding: 0 .7em;
 }

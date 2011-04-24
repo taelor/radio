@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
   
-  def host_or_admin?
+  def admin_or_host?
     role.host? or role.admin?
   end
   
@@ -53,7 +53,19 @@ class User < ActiveRecord::Base
   end
   
   def to_s
-    full_name
+    "#{full_name} - #{role.to_s}"
+  end
+  
+  def has_permission_to(action, resource)
+    return true if admin? or host?
+    if resource.is_a?(Episode)
+      if self.guest?
+        return true if resource.guest == self 
+      elsif self.publicist?
+        return true if resource.publicists.include?(self)
+      end
+    end
+    false
   end
   
   protected

@@ -29,4 +29,12 @@ class Episode < ActiveRecord::Base
     the_title = title.size > 30 ? "#{title[0..27]}..." : title 
     "#{air_datetime.to_date} - #{the_title}"
   end
+  
+  def publicists
+    guest.publicists
+  end
+  
+  def to_s
+    title
+  end
 end

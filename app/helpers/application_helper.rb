@@ -14,6 +14,10 @@ module ApplicationHelper
   end
   
   def detail_row(title, value)
-    "<tr><th>#{title}</th><td>#{value}</td></tr>"
+    value ||= "&nbsp;"
+    "<tr>
+      <th>#{title}</th>
+      <td>#{value}</td>
+    </tr>"
   end
 end

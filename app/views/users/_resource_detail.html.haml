@@ -1,2 +1,20 @@
-#table{ :class =>"#{collection.first.class.to_s.downcase} detail" }
+%table{ :class =>"#{resource.class.to_s.downcase} detail" }
   =raw detail_row "Email: ", resource.email
+  =raw detail_row "Cell Phone: ", resource.cell_phone
+
+%br
+%br
+
+- if !resource.guests.empty?
+  %h3 Clients
+  %hr
+  - resource.guests.each do |guest|
+    = link_to guest.to_s, guest
+    %br
+    
+- if !resource.publicists.empty?
+  %h3 Publicists
+  %hr
+  - resource.publicists.each do |publicist|
+    = link_to publicist.to_s, publicist
+    %br

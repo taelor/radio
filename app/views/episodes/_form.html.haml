@@ -24,13 +24,14 @@
 
 %h1
   %span#form_info_link
-    = link_to "New #{resource.class.name.titleize}", "#form_info_link"
+    = link_to "Episode Details", "#form_info_link"
   &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
   %span#form_questions_link
     = link_to "Questions", "#form_questions_link"
-  &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-  %span#form_stories_link
-    = link_to "Stories", "#form_stories_link"
+  - if current_user.admin_or_host?
+    &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+    %span#form_stories_link
+      = link_to "Stories", "#form_stories_link"
 %hr
 
 - semantic_form_for @episode do |form|
@@ -52,14 +53,16 @@
     - form.inputs :for => :questions do |question_form|
       - number += 1
       = question_form.input :body, :as => :text, :input_html => {:rows => 3}, :label=> number.to_s
-  - number = 0
-  #form_stories{:style => "display:none"}
-    - form.inputs :for => :stories do |story_form|
-      - number += 1
-      = story_form.input :title
-      = story_form.input :url
-      = story_form.input :source
-      = story_form.input :body, :as => :text
+      
+  - if current_user.admin_or_host?
+    - number = 0
+    #form_stories{:style => "display:none"}
+      - form.inputs :for => :stories do |story_form|
+        - number += 1
+        = story_form.input :title
+        = story_form.input :url
+        = story_form.input :source
+        = story_form.input :body, :as => :text
 
 
   = form.buttons
