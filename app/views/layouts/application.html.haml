@@ -35,12 +35,13 @@
         #page-bgtop
           #page-bgbtm
             #content
-              
               - flash.each do |key, message|
                 - if key == :notice
                   - key = :highlight
+                - elsif key == :alert
+                  - key = :error
                 .ui-widget
-                  %div{:class => "ui-state-#{key} ui-corner-all flash_message", :id => "key"}
+                  %div{:class => "ui-state-#{key} ui-corner-all flash_message", :id => "flash_#{key}"}
                     %p
                       - if key == :error
                         %span.ui-icon.ui-icon-alert{:style => "float:left; margin-right: .3em;"}

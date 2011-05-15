@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110515203033) do
+ActiveRecord::Schema.define(:version => 20110515210805) do
 
   create_table "conferences", :force => true do |t|
     t.date     "start_date"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(:version => 20110515203033) do
   create_table "stories", :force => true do |t|
     t.string   "title"
     t.string   "url"
-    t.string   "body"
+    t.text     "body"
     t.string   "source"
     t.integer  "episode_id"
     t.datetime "created_at"
