@@ -21,6 +21,7 @@
           - if current_user
             = raw layout_menu_item("Episodes", :episodes)
           - if current_user and current_user.admin_or_host?
+            = raw layout_menu_item("Pitches", :pitches)
             = raw layout_menu_item("Users", :users)
             = raw layout_menu_item("Conferences", :conferences)
           = raw layout_menu_item("About", :about)

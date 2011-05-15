@@ -1,0 +1,7 @@
+- collection.each do |resource|
+  .episode
+    %h2.title= link_to resource.to_s, resource
+    %p.meta
+      %span.posted
+        = link_to "Edit", [:edit, resource]
+    <div style="clear: both;">&nbsp;</div>

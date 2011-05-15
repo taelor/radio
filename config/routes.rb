@@ -1,4 +1,6 @@
 Radio::Application.routes.draw do
+  resources :pitches
+
   devise_for :users do
     get "/login" => "devise/sessions#new"
     get "/logout" => "devise/sessions#destroy"

@@ -1,0 +1,2 @@
+class PitchesController < RadioController
+end

@@ -258,14 +258,14 @@ a:hover {
 .episode .meta .date {
 	float: left;
 	height: 24px;
-	padding: 3px 0px;
+	padding: 7px 0px;
 	color: #FFFFFF;
 }
 
 .episode .meta .posted {
 	float: right;
 	height: 24px;
-	padding: 3px 15px;
+	padding: 7px 15px;
 	border-left: 1px solid #FFFFFF;
 	color: #FFFFFF;
 }
