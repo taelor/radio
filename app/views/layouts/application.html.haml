@@ -61,7 +61,7 @@
             %li
               %h2 Recent and Upcoming Shows
               %ul
-                - Episode.limit(4).each do |episode|
+                - Episode.limit(6).each do |episode|
                   %li= link_to episode.shortened_title, episode, :class => "truncate"
               
       <!-- end #sidebar -->

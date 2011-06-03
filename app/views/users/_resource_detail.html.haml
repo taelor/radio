@@ -1,8 +1,9 @@
 %table{ :class =>"#{resource.class.to_s.downcase} detail" }
   =raw detail_row "Email: ", resource.email
+  =raw detail_row "Land Line Phone: ", resource.land_line_phone
   =raw detail_row "Cell Phone: ", resource.cell_phone
-
-%br
+  
+%p= resource.bio
 %br
 
 - if !resource.guests.empty?

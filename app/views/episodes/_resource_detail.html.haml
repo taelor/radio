@@ -1,8 +1,7 @@
-%span= "Air Date: #{resource.air_datetime.to_date}"
-%br
-%span= "Recording Date: #{resource.recording_datetime.to_date}"
-%br
-%br
+%table{ :class =>"#{resource.class.to_s.downcase} detail" }
+  =raw detail_row "Air Time: ", resource.air_datetime.to_formatted_s(:long_ordinal)
+  =raw detail_row "Recording Time: ", resource.recording_datetime.to_formatted_s(:long_ordinal)
+    
 %p= resource.description
 %h3= "WIR"
 %hr
@@ -14,8 +13,16 @@
       %li= link_to story.title, story.url
 
 %br    
-%h3= "Questions for #{resource.guest_name}"
+%h3= raw "Questions for #{link_to(resource.guest_name, resource.guest)} (#{mail_to(resource.guest.email, :email)})"
 %hr
 %ol
   - resource.questions.each do |question|
     %li= question.body
+
+- if !resource.publicists.empty?
+  %h3 Publicists
+  %hr
+  - resource.publicists.each do |publicist|
+    = link_to publicist.to_s, publicist
+    =raw "(#{mail_to(publicist.email, :email)})"
+    %br
