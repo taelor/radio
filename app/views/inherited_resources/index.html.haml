@@ -1,5 +1,4 @@
-<%= render "index_navigation" %>
+= render "index_navigation"
 
-<% if collection.any? %>
-  <%= render "collection_table" %>
-<% end %>
+- if collection.any?
+  = render "collection_table"
