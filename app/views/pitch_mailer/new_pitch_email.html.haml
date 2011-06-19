@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+%html
+  %head
+    %meta{ :content=>"text/html; charset=UTF-8", :"http-equiv" => "Content-Type"}
+  %body
+    %h2= @pitch.title 
+    
+    %p= mail_to(@pitch.contact_email, @pitch.contact_name)
+
+    %p= simple_format(@pitch.description)
