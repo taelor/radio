@@ -28,7 +28,7 @@
   &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
   %span#form_questions_link
     = link_to "Questions", "#form_questions_link"
-  - if current_user.admin_or_host?
+  - if current_user.super_user?
     &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
     %span#form_stories_link
       = link_to "Stories", "#form_stories_link"
@@ -54,7 +54,7 @@
       - number += 1
       = question_form.input :body, :as => :text, :input_html => {:rows => 3}, :label=> number.to_s
       
-  - if current_user.admin_or_host?
+  - if current_user.super_user?
     - number = 0
     #form_stories{:style => "display:none"}
       - form.inputs :for => :stories do |story_form|

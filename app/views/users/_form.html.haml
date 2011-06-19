@@ -6,7 +6,7 @@
     = form.input :cell_phone
     = form.input :email
     = form.input :bio, :input_html => {:rows => 10}
-    - if current_user.admin_or_host?
+    - if current_user.super_user?
       - if !resource.new_record?
         - if resource.guest?
           = form.input :publicists, :collection => User.publicists.all

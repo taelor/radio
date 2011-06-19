@@ -20,7 +20,7 @@
         %ul
           - if current_user
             = raw layout_menu_item("Episodes", :episodes)
-          - if current_user and current_user.admin_or_host?
+          - if current_user and current_user.super_user?
             = raw layout_menu_item("Pitches", :pitches)
             = raw layout_menu_item("Users", :users)
             = raw layout_menu_item("Conferences", :conferences)
