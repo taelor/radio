@@ -1,5 +1,5 @@
 %p
-  - if current_user.has_permission_to(:edit, resource)
+  - if current_user.has_permission_to?(:edit, resource)
     = link_to "Edit", edit_resource_url(resource)
   - if current_user.admin?
     |

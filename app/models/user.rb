@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
     "#{full_name} - #{role.to_s}"
   end
   
-  def has_permission_to(action, resource)
+  def has_permission_to?(action, resource)
     return true if admin? or host?
     if resource.is_a?(Episode)
       if self.guest?
