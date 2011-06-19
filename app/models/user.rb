@@ -32,10 +32,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
   
-  def admin_or_host?
+  def super_user?
     role.host? or role.admin?
   end
-  
+
   def host?
     role.host?
   end

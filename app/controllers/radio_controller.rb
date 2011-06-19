@@ -7,7 +7,7 @@ class RadioController < ApplicationController
   protected
   
     def authorized?
-      if current_user.admin_or_host?
+      if current_user.super_user?
         true
       else
         false
