@@ -1,0 +1,13 @@
+%h2 Email Us
+%hr
+%p=raw "If you have a question about the show, want to suggest a show topic, or just want to say hi, you can email us at #{mail_to "TechTalk@imi-us.com", "TechTalk@imi-us.com" }"
+
+%br
+
+%h2 Pitch a Show
+%hr
+%p
+  Do you have a topic you would like to discuss on IMI's Tech Talk? Take a moment to fill out submit this form, and our producers will take a look at it and get back to you. All fields are required.
+
+
+= render "pitches/form", :resource => Pitch.new

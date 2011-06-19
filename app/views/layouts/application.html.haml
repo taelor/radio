@@ -35,7 +35,7 @@
       #page
         #page-bgtop
           #page-bgbtm
-            #content
+            #content{:style => current_user ? "" : 'float:left;width:100%'}
               - flash.each do |key, message|
                 - if key == :notice
                   - key = :highlight
