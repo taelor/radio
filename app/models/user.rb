@@ -81,11 +81,14 @@ class User < ActiveRecord::Base
   protected
     
     def default_password_and_send_email
-      default_password = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{rand}--")[0,6]
-      self.password = default_password
-      self.password_confirmation = default_password
-      self.save
+      if email
+        default_password = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{rand}--")[0,6]
+        self.password = default_password
+        self.password_confirmation = default_password
+        self.save
       
-      UserMailer.new_user_email(self, default_password).deliver
+        UserMailer.new_user_email(self, default_password).deliver
+      end
+      true
     end
 end
