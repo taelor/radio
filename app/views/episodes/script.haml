@@ -1,3 +1,194 @@
-%div
-  %center
-    %h2= resource.title
+<!DOCTYPE html>
+%html
+  %head
+    %title Script
+    
+    = stylesheet_link_tag "script"
+    = csrf_meta_tag
+    
+    :css
+      body{
+        font-family: "Arial Narrow", Arial, sans-serif;
+        font-size:22pt;
+        color:blue;
+      }
+
+      li{
+        margin:25px;
+      }
+
+      #stories{
+        color:black;
+      }
+
+      #story_link{
+        font-size:10pt;
+      }
+
+      .black{
+        color:black;
+      }
+
+      .red{
+        color:red;
+      }
+      
+      .page{
+        page-break-after: always
+      }
+
+      
+  
+  %body
+    %div
+      %center.page.red
+        %p
+          IMI's TechTalk on KFNX AM 1100
+
+        %p
+          With
+          %br
+          = resource.host.full_name
+        
+        %p
+          = "#{resource.air_datetime.to_date.strftime("%A")},"
+          = resource.air_datetime.to_date.to_s(:long)
+        
+        %p= resource.title
+        
+        = image_tag("logo.gif")
+        
+        %p= resource.guest.full_name
+        
+      
+      .page  
+        %center.red
+          Phone Numbers
+
+        %ul.red
+          %li
+            Host # - 602-265-7414
+          %li
+            Guest # - 615.477.6599
+          %li
+            Callers:
+            %ul
+              %li
+                Inside Phoenix, AZ - 602-277-KFNX (5369)
+              %li
+                Outside AZ - 1-866-536-1100
+              
+              
+
+        %p= mail_to("TechTalk@imi-us.com", "TechTalk@imi-us.com")
+
+        %p= link_to("www.1100kfnx.com")
+      
+      .page
+        %center.red
+          Segment #1 (7:01 - 15)
+      
+        %ul
+          %li
+            General Intro
+          %li
+            TAD: Introduction
+
+        %p Welcome to IMI's TechTalk on this thrid Sunday of June.  We are on at 6 pm in the New York listening area and 3 pm in Arizona.  Today we are live from our NY offices, and we are going to be discussing How to Contract a Website Without Getting Ripped Off  with guest Marianne Carlson.
+
+        %p I am Tom D'Auria, CEO of Information Methods Incorporated.  Together with our weekly guests, our show will help our listeners whether a business or home technology user make better use of all aspects of technology.   
+
+      .page
+        %center.red
+          Segment #1 (7:01 - 15)
+
+        %p Just in case you are a first time listener, in our first segment, TechTalk provides you with a review of last week's most significant events in technology.  We start with our increased coverage of New York's technology scene, and we follow this with our industry-wide report, which could contain information on conferences, announcements by vendors, new releases of software or equipment, or new contract opportunities.
+
+        %p One or more guests follow this from many aspects of business and industry and if you wish us to consider a topic for a future show, you can email your suggestion to TechTalk@imi-us.com and we'll get back to you
+    
+      
+      .page
+        %center.red
+          Segment #1 (7:01-15)
+
+        %p Any time after our show introduction, please give us a call or send an email message with questions on today's topic or anything else that we might be able to help.
+
+        %ul
+          %li
+            To call in you can dial:
+          %ul
+            %li
+              Inside the Phoenix listening area: 602-277-KFNX (5369)
+            %li
+              Outside 602	 	1-866-536-1100 
+
+        %p To send us an email question, you can do so at:
+      
+        %ul
+          %li Techtalk@imi-us.com
+        
+          %li "Tech Talk" is also being simulcast on the Web - please tune into our show at KFNX's web site at www.1100kfnx.com
+
+          %li Please call in at any time during the show and we'll try to get you on as quickly as possible.
+      
+      .page  
+        %center.red
+          Segment #1 (7:01-15)
+
+        %p The first segment is our week in review with our increased coverage of technology events in New York City and around the world compiled by Dave Brandin and Jose Baptista.
+      
+      #stories
+        - resource.stories.each do |story|
+          .page
+            #story_link
+              = link_to(story.url)
+            %b
+              = story.title
+            = "(#{story.source})"
+            %br
+            = simple_format story.body
+      
+      .page
+        .red
+          And now for today's guest,
+
+        %p.black= resource.guest.bio
+      
+      
+      #questions.page.black
+        - resource.questions.each do |question|
+          %em
+            %p= question.body
+  
+        .red
+          =raw "#{resource.guest.first_name} - thanks again for being with us."
+      
+      .page 
+        GOING TO COMMERCIAL:
+
+        .red Now we are going to take a short break.
+
+        %p.black=raw "Once again, you are listening to TechTalk live from our offices in NY; I am Tom D'Auria and this week we are discussing How to #{resource.title} with guest #{resource.guest.full_name}."
+
+        %p.black If you have questions you can call us at: 
+        %ul
+          %li Inside the Phoenix area:  602-277-KFNX (5369)
+          %li Outside Phoenix:    	 	   1-866-536-1100 
+      
+      .page
+        %p CLOSING 
+
+        .red Thanks to our guest for taking the time to be on the show. Thanks for taking time from your busy schedule to join us. 
+
+        %p.black= "Next week, we will again be live from our New York offices with the Week in Review and #{resource.next.guest.full_name} discussing #{resource.next.title}."
+
+        %p.black I want to thank Terry Ruggiero, IMI's president, Dave Brandin and Jose Baptista, for the Week in Review, Taylor Redden, our Producer, Matt Campagni our Executive Producer, and from our Production Department, Robert Baumbach.
+
+        %p.black Thank you again for listening and please don't forget to tune in to TechTalk next week at 6 pm in NY on KFNX 1100.
+
+        %p.black Remember to send us your suggestions for future shows or ask us questions by sending an email to TechTalk@imi-us.com.
+
+        %p.red
+          %b Have a great week and thanks again for listening!
+
+

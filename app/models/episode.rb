@@ -34,6 +34,10 @@ class Episode < ActiveRecord::Base
     guest.publicists
   end
   
+  def next
+    Episode.where(["air_datetime > ?", self.air_datetime ]).first
+  end
+  
   def to_s
     title
   end
