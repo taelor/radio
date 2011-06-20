@@ -52,6 +52,16 @@ class User < ActiveRecord::Base
     role.publicist?
   end
   
+  def phone_number
+    if land_line_phone
+      land_line_phone
+    elsif cell_phone
+      cell_phone
+    else
+      ""
+    end
+  end
+  
   def to_s
     "#{full_name} - #{role.to_s}"
   end

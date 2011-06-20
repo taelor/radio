@@ -34,8 +34,26 @@ class Episode < ActiveRecord::Base
     guest.publicists
   end
   
+  def week_of_month
+    air_date = air_datetime.to_date
+    count = 0
+    
+    air_date.downto(Date.new(air_date.year, air_date.month, 1)) do |increment_date|
+      count += 1 if increment_date.wday == 0
+    end
+    count.ordinalize
+  end
+  
   def next
-    Episode.where(["air_datetime > ?", self.air_datetime ]).first
+    Episode.unscoped.where(["air_datetime > ?", self.air_datetime ]).order("air_datetime ASC").first
+  end
+
+  def live?
+    air_datetime == recording_datetime
+  end
+  
+  def prerecord?
+    !live?
   end
   
   def to_s

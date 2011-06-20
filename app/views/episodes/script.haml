@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 %html
   %head
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    
     %title Script
     
     = stylesheet_link_tag "script"
@@ -33,6 +35,10 @@
         color:red;
       }
       
+      .blue{
+        color:blue;
+      }
+      
       .page{
         page-break-after: always
       }
@@ -44,15 +50,24 @@
       %center.page.red
         %p
           IMI's TechTalk on KFNX AM 1100
-
-        %p
+          %br
           With
           %br
           = resource.host.full_name
         
         %p
-          = "#{resource.air_datetime.to_date.strftime("%A")},"
-          = resource.air_datetime.to_date.to_s(:long)
+          - if resource.live?
+            .blue
+              (LIVE)
+            = "#{resource.air_datetime.to_date.strftime("%A")},"
+            = "#{resource.air_datetime.to_s(:long_ordinal)} ET"
+          -else
+            = "#{resource.air_datetime.to_date.strftime("%A")},"
+            = "#{resource.air_datetime.to_s(:long_ordinal)} ET"
+            .blue
+              (PRERECORD)
+              = "#{resource.recording_datetime.to_date.strftime("%A")},"
+              = "#{resource.recording_datetime.to_s(:long_ordinal)} ET"
         
         %p= resource.title
         
@@ -69,7 +84,7 @@
           %li
             Host # - 602-265-7414
           %li
-            Guest # - 615.477.6599
+            =raw "Guest # - #{resource.guest.phone_number}"
           %li
             Callers:
             %ul
@@ -94,7 +109,7 @@
           %li
             TAD: Introduction
 
-        %p Welcome to IMI's TechTalk on this thrid Sunday of June.  We are on at 6 pm in the New York listening area and 3 pm in Arizona.  Today we are live from our NY offices, and we are going to be discussing How to Contract a Website Without Getting Ripped Off  with guest Marianne Carlson.
+        %p=raw "Welcome to IMI's TechTalk on this #{resource.week_of_month} Sunday of #{resource.air_datetime.strftime("%B")}.  We are on at 6 pm in the New York listening area and 3 pm in Arizona.  Today we are live from our NY offices, and we are going to be discussing #{resource.title} with guest #{resource.guest_name}."
 
         %p I am Tom D'Auria, CEO of Information Methods Incorporated.  Together with our weekly guests, our show will help our listeners whether a business or home technology user make better use of all aspects of technology.   
 
@@ -169,7 +184,7 @@
 
         .red Now we are going to take a short break.
 
-        %p.black=raw "Once again, you are listening to TechTalk live from our offices in NY; I am Tom D'Auria and this week we are discussing How to #{resource.title} with guest #{resource.guest.full_name}."
+        %p.black=raw "Once again, you are listening to TechTalk live from our offices in NY; I am Tom D'Auria and this week we are discussing How to #{resource.title} with guest #{resource.guest_name}."
 
         %p.black If you have questions you can call us at: 
         %ul
@@ -181,7 +196,7 @@
 
         .red Thanks to our guest for taking the time to be on the show. Thanks for taking time from your busy schedule to join us. 
 
-        %p.black= "Next week, we will again be live from our New York offices with the Week in Review and #{resource.next.guest.full_name} discussing #{resource.next.title}."
+        %p.black= "Next week, we will again be live from our New York offices with the Week in Review and #{resource.next.guest_name} discussing #{resource.next.title}."
 
         %p.black I want to thank Terry Ruggiero, IMI's president, Dave Brandin and Jose Baptista, for the Week in Review, Taylor Redden, our Producer, Matt Campagni our Executive Producer, and from our Production Department, Robert Baumbach.
 
