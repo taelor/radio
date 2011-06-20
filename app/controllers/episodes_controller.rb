@@ -2,7 +2,10 @@ class EpisodesController < RadioController
   
   def script
     resource
-    render :layout => false
+    respond_to do |format|
+      format.html { render :layout => false }
+      format.pdf { render(:pdf => "script", :layout => false) }
+    end
   end
   
   protected
