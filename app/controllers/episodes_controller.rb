@@ -1,5 +1,10 @@
 class EpisodesController < RadioController
   
+  def script
+    resource
+    render :layout => false
+  end
+  
   protected
     
     def authorized?

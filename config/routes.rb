@@ -15,6 +15,9 @@ Radio::Application.routes.draw do
     collection do
       get 'send_test_email'
     end
+    member do
+      get 'script'
+    end
   end
   resources :guests
   resources :hosts
