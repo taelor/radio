@@ -81,7 +81,7 @@ class User < ActiveRecord::Base
   protected
     
     def default_password_and_send_email
-      if email
+      if !email.to_s.empty?
         default_password = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{rand}--")[0,6]
         self.password = default_password
         self.password_confirmation = default_password
