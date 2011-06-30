@@ -39,8 +39,35 @@
         color:blue;
       }
       
+      .blue_outline{
+        border: 1px solid blue;
+        width : 200px;
+        font-size: 12pt;
+        padding:5px;
+      }
+      
+      .blue_outline hr{
+        color:blue;
+      }
+      
       .page{
         page-break-after: always
+      }
+      
+      .left{
+        float: left;
+      }
+      .right{
+        float: right;
+      }
+      .clear{
+        clear:both;
+      }
+      .clear_left{
+        clear:left;
+      }
+      .clear{
+        clear:both;
       }
 
       
@@ -73,6 +100,36 @@
         
         = image_tag("logo.gif")
         
+        .left.blue.blue_outline.box_left
+          Station Number
+          %br
+          602-277-1100
+          %br
+          Production Dept. at x465
+          %br
+          Ask for Robert Baumbach
+          %hr
+          Secret #: 602-248-1465
+          
+        .right.blue.blue_outline.box_right
+          Guest call the toll-free station number from landline:
+          %br
+          = resource.guest.phone_number
+          %br
+          Interview Time
+          = resource.recording_datetime.to_s(:time)
+          %hr
+          The number for pre-records:
+          %br
+          602-248-1467
+          %br
+          The guest calls:
+          %br
+          Pre-records 602-248-1468
+          %br
+          Live 866-536-1100 (toll free)
+        
+        .clear
         %p= resource.guest.full_name
         
       
