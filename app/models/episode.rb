@@ -1,4 +1,7 @@
 class Episode < ActiveRecord::Base
+  
+  datetime_hack :recording_datetime, :air_datetime
+  
   belongs_to :guest, :class_name => "User"
   belongs_to :host, :class_name => "User"
 
@@ -12,6 +15,10 @@ class Episode < ActiveRecord::Base
     :reject_if => proc { |attributes| attributes['body'].blank? }
     
   default_scope :order => 'air_datetime DESC'
+  
+  def script_name
+    "#{air_datetime.strftime('%Y%m%d')} TechTalk Script - #{live? ? 'LIVE' : 'PRERECORD'} - #{guest_name} - #{recording_datetime.strftime('%B at%l %p ET')}"
+  end
   
   def title
     if attributes["title"].to_s.empty?

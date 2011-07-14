@@ -6,7 +6,7 @@ class EpisodesController < RadioController
       format.html { render :layout => false }
       format.pdf do 
         render(
-          :pdf => "script", 
+          :pdf => resource.script_name, 
           :layout => false, 
           :header => {
             :left => "#{resource.live? ? 'LIVE': 'PRERECORD'} - #{resource.recording_datetime.to_date.to_s(:short)}\nGuest: #{resource.guest_name}",
