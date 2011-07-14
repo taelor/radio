@@ -4,8 +4,25 @@ class EpisodesController < RadioController
     resource
     respond_to do |format|
       format.html { render :layout => false }
-      format.pdf { render(:pdf => "script", :layout => false) }
+      format.pdf do 
+        render(
+          :pdf => "script", 
+          :layout => false, 
+          :header => {
+            :left => "#{resource.live? ? 'LIVE': 'PRERECORD'} - #{resource.recording_datetime.to_date.to_s(:short)}\nGuest: #{resource.guest_name}",
+            :right => "TECHTALK"
+          },
+          :footer => {
+            :left => "IMI Group",
+            :center => 'Page [page]/[topage]'
+          }
+        ) 
+      end
     end
+  end
+  
+  def email
+    resource
   end
   
   protected
