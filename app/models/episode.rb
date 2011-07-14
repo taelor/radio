@@ -1,6 +1,6 @@
 class Episode < ActiveRecord::Base
   
-  datetime_hack :recording_datetime, :air_datetime
+  #datetime_hack :recording_datetime, :air_datetime
   
   belongs_to :guest, :class_name => "User"
   belongs_to :host, :class_name => "User"
