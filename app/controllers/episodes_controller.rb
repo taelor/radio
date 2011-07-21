@@ -9,7 +9,8 @@ class EpisodesController < RadioController
           :pdf => resource.script_name, 
           :layout => false, 
           :header => {
-            :left => "#{resource.live? ? 'LIVE': 'PRERECORD'} - #{resource.recording_datetime.to_date.to_s(:short)}\nGuest: #{resource.guest_name}",
+            :left => "#{resource.live? ? 'LIVE': 'PRERECORD'} - #{resource.recording_datetime.to_date.to_s(:short)}",
+            :center => "Guest: #{resource.guest_name}",
             :right => "TECHTALK"
           },
           :footer => {
