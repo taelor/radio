@@ -251,7 +251,12 @@
 
         .red Thanks to our guest for taking the time to be on the show. Thanks for taking time from your busy schedule to join us. 
 
-        %p.black= "Next week, we will again be live from our New York offices with the Week in Review and #{resource.next.guest_name} discussing #{resource.next.title}."
+        %p.black
+          = "Next week, we will again be live from our New York offices with the Week in Review and "
+            - if resource.next
+              = "#{resource.next.guest_name} discussing #{resource.next.title}."
+            - else
+              = " another guest topic."
 
         %p.black I want to thank Terry Ruggiero, IMI's president, Dave Brandin and Jose Baptista, for the Week in Review, Taylor Redden, our Producer, Matt Campagni our Executive Producer, and from our Production Department, Robert Baumbach.
 
