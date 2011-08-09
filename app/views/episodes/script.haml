@@ -84,15 +84,12 @@
           - if resource.live?
             .blue
               (LIVE)
-            = "#{resource.air_datetime.to_date.strftime("%A")},"
-            = "#{resource.air_datetime.to_s(:long_ordinal)} ET"
+            = "#{resource.air_datetime.to_s(:radio)} ET"
           -else
-            = "#{resource.air_datetime.to_date.strftime("%A")},"
-            = "#{resource.air_datetime.to_s(:long_ordinal)} ET"
+            = "#{resource.air_datetime.to_s(:radio)} ET"
             .blue
               (PRERECORD)
-              = "#{resource.recording_datetime.to_date.strftime("%A")},"
-              = "#{resource.recording_datetime.to_s(:long_ordinal)} ET"
+              = "#{resource.recording_datetime.to_s(:radio)} ET"
         
         %p= resource.title
         
