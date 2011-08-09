@@ -3,8 +3,13 @@
 module Formtastic
   module DatePicker
     protected
+    
+    def date_picker_input(method, options = {})
+      format = options[:format] || Date::DATE_FORMATS[:default] || '%m/%d/%Y'
+      string_input(method, datepicker_options(format, object.send(method)).merge(options))
+    end
  
-    def datepicker_input(method, options = {})
+    def datetime_picker_input(method, options = {})
       date_method = method.to_s.split("_")[0]+"_date"
       time_method = method.to_s.split("_")[0]+"_time"
       format = options[:format] || Date::DATE_FORMATS[:default] || '%m/%d/%Y'

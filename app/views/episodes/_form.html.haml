@@ -43,8 +43,8 @@
       - if current_user.super_user?
         = form.input :host, :collection => User.hosts.all
         = form.input :guest, :collection => User.guests.all
-        = form.input :air_date, :as => :datepicker
-        = form.input :recording_datetime, :as => :datepicker
+        = form.input :air_datetime, :as => :datetime_picker
+        = form.input :recording_datetime, :as => :datetime_picker
         
       = form.input :title
       = form.input :description
