@@ -27,6 +27,9 @@ module CoHack
           end
           
           ds = date_string.to_date
+          # default to EST
+          Time.zone ||= 'Eastern Time (US & Canada)'
+          Time.local ds.year, ds.month, ds.day, hour.to_i, minutes.to_i
         end
         
         send :define_method, "is_valid_date?".to_sym do |field|
