@@ -1,0 +1,6 @@
+- semantic_form_for resource do |form|
+  - form.inputs do
+    = form.input :name
+    = form.input :start_date, :as => :date_picker
+    = form.input :end_date, :as => :date_picker
+    = form.input :has_press_pass
