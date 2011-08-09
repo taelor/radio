@@ -12,11 +12,14 @@
       $("#form_stories").hide();
     });
     
-   $("#form_stories_link").click(function(){
+    $("#form_stories_link").click(function(){
       $("#form_info").hide();
       $("#form_questions").hide();
       $("#form_stories").show();
     });
+    
+    $('#episode_air_time').prev().remove();
+    $('#episode_recording_time').prev().remove()
   });
   
 - (15 - @episode.questions.size).times { @episode.questions.build }
@@ -40,12 +43,9 @@
       - if current_user.super_user?
         = form.input :host, :collection => User.hosts.all
         = form.input :guest, :collection => User.guests.all
-        =# form.input :air_datetime, :as => :datepicker
-        = form.input :air_datetime
-        =# form.input :recording_datetime, :as => :datepicker
-        = form.input :recording_datetime
-
-
+        = form.input :air_date, :as => :datepicker
+        = form.input :recording_datetime, :as => :datepicker
+        
       = form.input :title
       = form.input :description
       

@@ -17,6 +17,7 @@ Radio::Application.routes.draw do
     end
     member do
       get 'script'
+      get 'email'
     end
   end
   resources :guests
