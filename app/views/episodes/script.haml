@@ -54,6 +54,10 @@
         page-break-after: always
       }
       
+      .page p{
+        page-break-inside: avoid
+      }
+      
       .left{
         float: left;
       }
@@ -161,7 +165,7 @@
           %li
             TAD: Introduction
 
-        %p=raw "Welcome to IMI's TechTalk on this #{resource.week_of_month} Sunday of #{resource.air_datetime.strftime("%B")}.  We are on at 6 pm in the New York listening area and 3 pm in Arizona.  Today we are live from our NY offices, and we are going to be discussing #{resource.title} with guest #{resource.guest_name}."
+        %p=raw "Welcome to IMI's TechTalk on this #{resource.week_of_month} Sunday of #{resource.air_datetime.strftime("%B")}.  We are on at 5 pm in the New York listening area and 3 pm in Arizona.  Today we are live from our NY offices, and we are going to be discussing #{resource.title} with guest #{resource.guest_name}."
 
         %p I am Tom D'Auria, CEO of Information Methods Incorporated.  Together with our weekly guests, our show will help our listeners whether a business or home technology user make better use of all aspects of technology.   
 
