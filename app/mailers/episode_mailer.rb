@@ -1,6 +1,4 @@
-class EpisodeMailer < ActionMailer::Base
-  default :from => "TechTalk@imi-us.com"
-  
+class EpisodeMailer < RadioMailer  
   def schedule(episode)
     @episode = episode
     mail(:to =>"thredden@gmail.com", :subject => "IMI's TechTalk - Schedule - #{@episode.recording_description}")
