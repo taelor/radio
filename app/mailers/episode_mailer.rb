@@ -22,22 +22,7 @@ class EpisodeMailer < RadioMailer
       format.text
       format.html
       format.pdf do
-        attachments["script.pdf"] = WickedPdf.new.pdf_from_string(
-          render_to_string(
-            :pdf => "script",
-            :template => 'episodes/script.haml',
-            :layout => false, 
-            :header => {
-              :left => "#{@episode.live? ? 'LIVE': 'PRERECORD'} - #{@episode.recording_datetime.to_date.to_s(:short)}",
-              :center => "Guest: #{@episode.guest_name}",
-              :right => "TECHTALK"
-            },
-            :footer => {
-              :left => "IMI Group",
-              :center => 'Page [page]/[topage]'
-            }            
-          )
-        )
+        attachments["script.pdf"] = File.read(Rails.root.join('tmp', "#{resource.script_name}.pdf")
       end
     end
   end

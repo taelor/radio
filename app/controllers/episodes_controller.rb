@@ -29,6 +29,24 @@ class EpisodesController < RadioController
   
   def send_email
     resource
+    if params[:email] == "script"
+      pdf = render_to_string(
+        :pdf => resource.script_name, 
+        :layout => false, 
+        :header => {
+          :left => "#{resource.live? ? 'LIVE': 'PRERECORD'} - #{resource.recording_datetime.to_date.to_s(:short)}",
+          :center => "Guest: #{resource.guest_name}",
+          :right => "TECHTALK"
+        },
+        :footer => {
+          :left => "IMI Group",
+          :center => 'Page [page]/[topage]'
+        }
+      )
+      File.open(Rails.root.join('tmp', "#{resource.script_name}.pdf"), 'wb') do |file|
+        file << pdf
+      end
+    end
     EpisodeMailer.send(params[:email], resource).deliver
     flash[:highlight] = "Email Delivered."
     render "email"
