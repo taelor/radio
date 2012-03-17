@@ -18,7 +18,7 @@ class EpisodesController < RadioController
             :left => "IMI Group",
             :center => 'Page [page]/[topage]'
           }
-        )
+        ) 
       end
     end
   end

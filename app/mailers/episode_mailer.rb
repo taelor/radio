@@ -11,6 +11,7 @@ class EpisodeMailer < RadioMailer
       format.pdf do
         attachments[@episode.script_name] = WickedPdf.new.pdf_from_string(
           render_to_string(
+            :pdf => @episode.script_name,
             :template => 'episodes/script',
             :layout => false, 
             :header => {
