@@ -29,25 +29,7 @@ class EpisodesController < RadioController
   
   def send_email
     resource
-    if params[:email] == "script"
-      pdf = render_to_string(
-        :pdf => @episode.script_name,
-        :template => 'episodes/script',
-        :layout => false, 
-        :header => {
-          :left => "#{@episode.live? ? 'LIVE': 'PRERECORD'} - #{@episode.recording_datetime.to_date.to_s(:short)}",
-          :center => "Guest: #{@episode.guest_name}",
-          :right => "TECHTALK"
-        },
-        :footer => {
-          :left => "IMI Group",
-          :center => 'Page [page]/[topage]'
-        }            
-      )
-      EpisodeMailer.send(params[:email], resource, pdf).deliver
-    else
-      EpisodeMailer.send(params[:email], resource).deliver
-    end
+    EpisodeMailer.send(params[:email], resource).deliver
     flash[:highlight] = "Email Delivered."
     render "email"
   end
