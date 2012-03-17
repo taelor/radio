@@ -22,7 +22,7 @@ class EpisodeMailer < RadioMailer
       format.text
       format.html
       format.pdf do
-        attachments["script.pdf"] = File.read(Rails.root.join('tmp', "#{resource.script_name}.pdf")
+        attachments["script.pdf"] = File.read(Rails.root.join('tmp', "#{resource.script_name}.pdf"))
       end
     end
   end
