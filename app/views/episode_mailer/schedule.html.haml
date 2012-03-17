@@ -3,12 +3,12 @@
   %head
     %meta{ :content=>"text/html; charset=UTF-8", :"http-equiv" => "Content-Type"}
   %body
-    %h1= @episode.to_s
+    %h2= @episode.to_s
     %i= "With #{@episode.guest}"
     %p= @episode.recording_description
     %br
     %br
-    %h2 Upcoming Episodes
+    %h3 Upcoming Episodes
     - Episode.where(:recording_datetime.gt => @episode.recording_datetime).reverse.each do |episode|
       %p= "#{episode.recording_description} - #{episode.title}"
       

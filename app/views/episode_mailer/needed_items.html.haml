@@ -3,7 +3,7 @@
   %head
     %meta{ :content=>"text/html; charset=UTF-8", :"http-equiv" => "Content-Type"}
   %body
-    %h2 Info:
+    %h3 Info:
     %ol
       %li 
         %b Show Title 
@@ -23,7 +23,7 @@
         - if @episode.live?
           = "Since the show is live, please call in 5 or 10 minutes before the recording is scheduled to start."
 
-    %h2 Things we need from you:
+    %h3 Things we need from you:
     %ol 
       - if @episode.guest.bio.empty?
         %li A brief bio of the guest 
