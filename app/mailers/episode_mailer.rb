@@ -7,7 +7,6 @@ class EpisodeMailer < RadioMailer
   def script(episode)
     @episode = episode
     mail(:to =>"thredden@gmail.com", :subject => "IMI's TechTalk - Script- #{@episode.title} - #{@episode.recording_description}") do |format|
-      format.text
       format.html
       format.pdf do
         attachments[@episode.script_name] = WickedPdf.new.pdf_from_string(
