@@ -6,7 +6,7 @@
     %title Script
     
     = stylesheet_link_tag "script"
-    =# csrf_meta_tag
+    = csrf_meta_tag
     
     :css
       body{
@@ -97,7 +97,7 @@
         
         %p= @episode.title
         
-        = image_tag("logo.gif")
+        = wicked_pdf_image_tag("logo.gif")
         
         .left.blue.blue_outline.box_left
           Station Number
