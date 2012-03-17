@@ -18,13 +18,10 @@ class EpisodeMailer < RadioMailer
   def script(episode)
     @episode = episode
     subject = "IMI's TechTalk - Script- #{@episode.title} - #{@episode.recording_description}"
-    mail(:to =>"thredden@gmail.com", :subject => subject) do |format|
-      format.text
-      format.html
-      format.pdf do
-        attachments["script.pdf"] = File.read(Rails.root.join('tmp', "#{@episode.script_name}.pdf"))
-      end
-    end
+    
+    attachments["#{@episode.script_name}.pdf"] = File.read(Rails.root.join('tmp', "#{@episode.script_name}.pdf"))
+    
+    mail(:to =>"thredden@gmail.com", :subject => subject)
   end
 
   def needed_items(episode)
