@@ -1,6 +1,7 @@
 class PitchesController < RadioController
-  skip_before_filter :authenticate_user!, :only => :create
+  inherit_resources
   
+  skip_before_filter :authenticate_user!, :only => :create
   
   def create
     create!{

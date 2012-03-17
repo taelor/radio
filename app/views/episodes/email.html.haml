@@ -1,0 +1,11 @@
+= render "show_navigation"
+
+%h1
+  = resource.to_s
+%hr
+
+%p= link_to("Email Schedule", send_email_episode_path(@email, :email => "schedule") , :method => :post)
+
+%p= link_to("Email Script", send_email_episode_path(@email, :email => "script") , :method => :post)
+
+%p= link_to("Needed Items", send_email_episode_path(@email, :email => "needed_items") , :method => :post)

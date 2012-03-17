@@ -2,8 +2,6 @@ class RadioController < ApplicationController
   before_filter :authenticate_user!
   before_filter :redirect_if_not_authorized
   
-  inherit_resources
-  
   protected
   
     def authorized?

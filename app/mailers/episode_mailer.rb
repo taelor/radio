@@ -1,7 +1,18 @@
 class EpisodeMailer < ActionMailer::Base
   default :from => "TechTalk@imi-us.com"
   
-  def test_email()
-    mail(:to =>"thredden@gmail.com", :subject => "Welcome to My Awesome Site")
+  def schedule(episode)
+    @episode = episode
+    mail(:to =>"thredden@gmail.com", :subject => "IMI's TechTalk - Schedule - #{@episode.recording_description}")
+  end
+  
+  def script(episode)
+    @episode = episode
+    mail(:to =>"thredden@gmail.com", :subject => "IMI's TechTalk - Script- #{@episode.title} - #{@episode.recording_description}")
+  end
+  
+  def needed_items(episode)
+    @episode = episode
+    mail(:to =>"thredden@gmail.com", :subject => "IMI's TechTalk - Needed Items - #{@episode.title}")
   end
 end

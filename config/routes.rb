@@ -13,11 +13,12 @@ Radio::Application.routes.draw do
     resources :stories
     
     collection do
-      get 'send_test_email'
+      get 'schedule'
     end
     member do
       get 'script'
       get 'email'
+      post 'send_email'
     end
   end
   resources :guests

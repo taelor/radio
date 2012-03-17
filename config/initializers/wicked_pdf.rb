@@ -1,5 +1,5 @@
 
-exe_path = (RAILS_ENV == "production") ?
+exe_path = (Rails.env == "production") ?
   Rails.root.join('bin', 'wkhtmltopdf-amd64').to_s :
   '/usr/local/bin/wkhtmltopdf'
 

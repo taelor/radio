@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+%html
+  %head
+    %meta{ :content=>"text/html; charset=UTF-8", :"http-equiv" => "Content-Type"}
+  %body
+    %h1= @episode.to_s
+    %i= "With #{@episode.guest}"
+    %p= "Air Time: #{@episode.air_datetime.to_s(:radio)}"
+    %p= "Recording Time: #{@episode.recording_datetime.to_formatted_s(:radio)}"
+    
+    %h2 Upcoming Episodes
+    - Episode.where(:recording_datetime.gt => @episode.recording_datetime).reverse.each do |episode|
+      %p= "#{episode.air_date} - #{episode.recording_description} - #{episode.title}"
+      

@@ -37,28 +37,30 @@
       = link_to "Stories", "#form_stories_link"
 %hr
 
-- semantic_form_for @episode do |form|
+= semantic_form_for @episode do |form|
   #form_info
-    - form.inputs do
+    = form.inputs do
       - if current_user.super_user?
         = form.input :host, :collection => User.hosts.all
         = form.input :guest, :collection => User.guests.all
-        = form.input :air_datetime, :as => :datetime_picker
-        = form.input :recording_datetime, :as => :datetime_picker
+        = form.input :air_date, :as => :date_picker
+        = form.input :air_time, :as => :time_picker
+        = form.input :recording_date, :as => :date_picker
+        = form.input :recording_time, :as => :time_picker
         
       = form.input :title
       = form.input :description
       
   - number = 0
   #form_questions{:style => "display:none"}
-    - form.inputs :for => :questions do |question_form|
+    = form.inputs :for => :questions do |question_form|
       - number += 1
       = question_form.input :body, :as => :text, :input_html => {:rows => 3}, :label=> number.to_s
       
   - if current_user.super_user?
     - number = 0
     #form_stories{:style => "display:none"}
-      - form.inputs :for => :stories do |story_form|
+      = form.inputs :for => :stories do |story_form|
         - number += 1
         = story_form.input :title
         = story_form.input :url

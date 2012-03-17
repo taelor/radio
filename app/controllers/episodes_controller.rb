@@ -1,4 +1,5 @@
 class EpisodesController < RadioController
+  inherit_resources
   
   def script
     resource
@@ -24,6 +25,12 @@ class EpisodesController < RadioController
   
   def email
     resource
+  end
+  
+  def send_email
+    EpisodeMailer.send(params[:email], resource).deliver
+    flash[:highlight] = "Email Delivered."
+    render "email"
   end
   
   protected

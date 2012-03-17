@@ -24,7 +24,7 @@ module Formtastic
     end
   end
 end
-Formtastic::SemanticFormBuilder.send(:include, Formtastic::DatePicker)
+Formtastic::FormBuilder.send(:include, Formtastic::DatePicker)
 
 # --------------------------------------------------------------------------------------------------
 # Please note: If you're subclassing Formtastic::SemanticFormBuilder in a Rails 3 project, 

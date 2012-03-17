@@ -16,8 +16,10 @@ class Episode < ActiveRecord::Base
     
   default_scope :order => 'air_datetime DESC'
   
+  scope :ascending, :order => 'air_datetime ASC'
+  
   def script_name
-    "#{air_datetime.strftime('%Y%m%d')} TechTalk Script - #{live? ? 'LIVE' : 'PRERECORD'} - #{guest_name} - #{recording_datetime.strftime('%B %e at%l %p ET')}"
+    "#{air_datetime.strftime('%Y%m%d')} TechTalk Script - #{} - #{guest_name} - #{recording_datetime.strftime('%B %e at%l %p ET')}"
   end
   
   def title
@@ -61,6 +63,14 @@ class Episode < ActiveRecord::Base
   
   def prerecord?
     !live?
+  end
+  
+  def recording_description
+    if live?
+      "#{air_date} - #{recording_datetime.strftime('LIVE at%l %p ET')}"
+    else
+      "#{air_date} - #{recording_datetime.strftime('PRERECORD %B %e at%l %p ET')}"
+    end
   end
   
   def to_s
