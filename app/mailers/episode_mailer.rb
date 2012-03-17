@@ -14,8 +14,8 @@ class EpisodeMailer < RadioMailer
             :template => 'episodes/script',
             :layout => false, 
             :header => {
-              :left => "#{resource.live? ? 'LIVE': 'PRERECORD'} - #{resource.recording_datetime.to_date.to_s(:short)}",
-              :center => "Guest: #{resource.guest_name}",
+              :left => "#{@episode.live? ? 'LIVE': 'PRERECORD'} - #{@episode.recording_datetime.to_date.to_s(:short)}",
+              :center => "Guest: #{@episode.guest_name}",
               :right => "TECHTALK"
             },
             :footer => {
