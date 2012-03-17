@@ -1,5 +1,10 @@
-= @episode.to_s
-= "With #{@episode.guest}"
-= @episode.recording_description
+<!DOCTYPE html>
+%html
+  %head
+    %meta{ :content=>"text/html; charset=UTF-8", :"http-equiv" => "Content-Type"}
+  %body
+    %h1= @episode.to_s
+    %i= "With #{@episode.guest}"
+    %p= @episode.recording_description
     
-Script Attached
+    %p Script Attached
