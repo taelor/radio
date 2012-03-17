@@ -17,14 +17,15 @@ class EpisodeMailer < RadioMailer
 
   def script(episode)
     @episode = episode
-    mail(:to =>"thredden@gmail.com", :subject => "IMI's TechTalk - Script- #{@episode.title} - #{@episode.recording_description}") do |format|
+    subject = "IMI's TechTalk - Script- #{@episode.title} - #{@episode.recording_description}"
+    mail(:to =>"thredden@gmail.com", :subject => subject) do |format|
       format.text
       format.html
       format.pdf do
-        attachments["script"] = WickedPdf.new.pdf_from_string(
+        attachments["script.pdf"] = WickedPdf.new.pdf_from_string(
           render_to_string(
             :pdf => "script",
-            :template => 'episodes/script',
+            :template => 'episodes/script.haml',
             :layout => false, 
             :header => {
               :left => "#{@episode.live? ? 'LIVE': 'PRERECORD'} - #{@episode.recording_datetime.to_date.to_s(:short)}",
