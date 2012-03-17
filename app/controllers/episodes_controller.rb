@@ -32,6 +32,7 @@ class EpisodesController < RadioController
     if params[:email] == "script"
       pdf = render_to_string(
         :pdf => resource.script_name, 
+        :template => "episodes/script",
         :layout => false, 
         :header => {
           :left => "#{resource.live? ? 'LIVE': 'PRERECORD'} - #{resource.recording_datetime.to_date.to_s(:short)}",
