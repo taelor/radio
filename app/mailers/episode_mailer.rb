@@ -3,6 +3,8 @@ class EpisodeMailer < RadioMailer
     @episode = episode
     mail(:to =>"thredden@gmail.com", :subject => "IMI's TechTalk - Schedule - #{@episode.recording_description}")
   end
+
+=begin
   
   def script(episode, pdf)
     @episode = episode
@@ -11,15 +13,17 @@ class EpisodeMailer < RadioMailer
     mail(:to =>"thredden@gmail.com", :subject => "IMI's TechTalk - Script- #{@episode.title} - #{@episode.recording_description}")
   end
 
-=begin
+=end
+
   def script(episode)
     @episode = episode
     mail(:to =>"thredden@gmail.com", :subject => "IMI's TechTalk - Script- #{@episode.title} - #{@episode.recording_description}") do |format|
       format.text
+      format.html
       format.pdf do
-        attachments[@episode.script_name] = WickedPdf.new.pdf_from_string(
+        attachments["script"] = WickedPdf.new.pdf_from_string(
           render_to_string(
-            :pdf => @episode.script_name,
+            :pdf => "script",
             :template => 'episodes/script',
             :layout => false, 
             :header => {
@@ -36,7 +40,6 @@ class EpisodeMailer < RadioMailer
       end
     end
   end
-=end
 
   def needed_items(episode)
     @episode = episode
