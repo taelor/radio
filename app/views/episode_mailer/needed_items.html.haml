@@ -13,10 +13,10 @@
         = "- please allocate one hour, but the interview should only take about 30 minutes."
       %li 
         %b Recording Date
-        = " - #{@episode.recording_datetime}"
+        = " - #{@episode.recording_datetime} ET"
       %li 
         %b Air Date
-        = " - #{@episode.at_datetime}"
+        = " - #{@episode.air_datetime} ET"
       %li
         %b Call instructions
         = " - You will need to dial into into the station at #{@episode.guest_call_in_number} with the land line number provided."
@@ -31,5 +31,5 @@
         %li The land line phone number the guest will be calling in with, just in case there are problems calling.
       - if @episode.questions.empty?  
         %li A list of ten or more questions for us to ask the guest on the topic. 
-      - if @episode.description
+      - if @episode.description.empty?
         %li Show Description (optional) - This is what we will use to go on the blog.
