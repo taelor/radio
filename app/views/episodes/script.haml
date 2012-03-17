@@ -6,7 +6,7 @@
     %title Script
     
     = stylesheet_link_tag "script"
-    = csrf_meta_tag
+    =# csrf_meta_tag
     
     :css
       body{
@@ -82,20 +82,20 @@
           %br
           With
           %br
-          = resource.host.full_name
+          = @episode.host.full_name
         
         %p
-          - if resource.live?
+          - if @episode.live?
             .blue
               (LIVE)
-            = "#{resource.air_datetime.to_s(:radio)} ET"
+            = "#{@episode.air_datetime.to_s(:radio)} ET"
           -else
-            = "#{resource.air_datetime.to_s(:radio)} ET"
+            = "#{@episode.air_datetime.to_s(:radio)} ET"
             .blue
               (PRERECORD)
-              = "#{resource.recording_datetime.to_s(:radio)} ET"
+              = "#{@episode.recording_datetime.to_s(:radio)} ET"
         
-        %p= resource.title
+        %p= @episode.title
         
         = image_tag("logo.gif")
         
@@ -113,10 +113,10 @@
         .right.blue.blue_outline.box_right
           Guest call the toll-free station number from landline:
           %br
-          = resource.guest.phone_number
+          = @episode.guest.phone_number
           %br
           Interview Time
-          = resource.recording_datetime.to_s(:time)
+          = @episode.recording_datetime.to_s(:time)
           %hr
           The number for pre-records:
           %br
@@ -129,7 +129,7 @@
           Live 866-536-1100 (toll free)
         
         .clear
-        %p= resource.guest.full_name
+        %p= @episode.guest.full_name
         
       
       .page  
@@ -140,7 +140,7 @@
           %li
             Host # - 602-265-7414
           %li
-            =raw "Guest # - #{resource.guest.phone_number}"
+            =raw "Guest # - #{@episode.guest.phone_number}"
           %li
             Callers:
             %ul
@@ -153,7 +153,7 @@
 
         %p= mail_to("TechTalk@imi-us.com", "TechTalk@imi-us.com")
 
-        %p= link_to("www.1100kfnx.com")
+        %p= link_to("http://www.1100kfnx.com", "http://www.1100kfnx.com")
       
       .page
         %center.red
@@ -165,7 +165,7 @@
           %li
             TAD: Introduction
 
-        %p=raw "Welcome to IMI's TechTalk on this #{resource.week_of_month} Sunday of #{resource.air_datetime.strftime("%B")}.  We are on at 6 PM in the New York listening area and 3 pm in Arizona.  Today we are live from our NY offices, and we are going to be discussing #{resource.title} with guest #{resource.guest_name}."
+        %p=raw "Welcome to IMI's TechTalk on this #{@episode.week_of_month} Sunday of #{@episode.air_datetime.strftime("%B")}.  We are on at 6 PM in the New York listening area and 3 pm in Arizona.  Today we are live from our NY offices, and we are going to be discussing #{@episode.title} with guest #{@episode.guest_name}."
 
         %p I am Tom D'Auria, CEO of Information Methods Incorporated.  Together with our weekly guests, our show will help our listeners whether a business or home technology user make better use of all aspects of technology.   
 
@@ -209,10 +209,10 @@
         %p The first segment is our week in review with our increased coverage of technology events in New York City and around the world compiled by Dave Brandin and Jose Baptista.
       
       #stories
-        - resource.stories.each do |story|
+        - @episode.stories.each do |story|
           .page
             #story_link
-              = link_to(story.url)
+              = link_to(story.url, story.url)
             %b
               = story.title
             %br
@@ -224,23 +224,23 @@
         .red
           And now for today's guest,
 
-        %p.black= simple_format resource.guest.bio
+        %p.black= simple_format @episode.guest.bio
       
       
       #questions.page.black
-        - resource.questions.each do |question|
+        - @episode.questions.each do |question|
           %em
             %p= question.body
   
         .red
-          =raw "#{resource.guest.first_name} - thanks again for being with us."
+          =raw "#{@episode.guest.first_name} - thanks again for being with us."
       
       .page 
         GOING TO COMMERCIAL:
 
         .red Now we are going to take a short break.
 
-        %p.black=raw "Once again, you are listening to TechTalk live from our offices in NY; I am Tom D'Auria and this week we are discussing How to #{resource.title} with guest #{resource.guest_name}."
+        %p.black=raw "Once again, you are listening to TechTalk live from our offices in NY; I am Tom D'Auria and this week we are discussing How to #{@episode.title} with guest #{@episode.guest_name}."
 
         %p.black If you have questions you can call us at: 
         %ul
@@ -254,8 +254,8 @@
 
         %p.black
           = "Next week, we will again be live from our New York offices with the Week in Review and "
-          - if resource.next
-            = "#{resource.next.guest_name} discussing #{resource.next.title}."
+          - if @episode.next
+            = "#{@episode.next.guest_name} discussing #{@episode.next.title}."
           - else
             = " another guest topic."
 
