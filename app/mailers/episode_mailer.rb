@@ -24,6 +24,7 @@ class EpisodeMailer < RadioMailer
               :center => 'Page [page]/[topage]'
             }            
           )
+        )
       end
     end
   end
