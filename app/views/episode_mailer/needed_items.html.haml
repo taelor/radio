@@ -3,17 +3,33 @@
   %head
     %meta{ :content=>"text/html; charset=UTF-8", :"http-equiv" => "Content-Type"}
   %body
-    %h1 This is a Test Email
-    
-    Info:
-    1) Length of Interview - please allocate one hour, but the interview should only take about 30 minutes.
-    2) Recording Date - February 24th at 3PM ET
-    3) Air Date - February 26th at 5PM ET
-    4) Call instructions - You will need to dial into into the station at 602-248-1468 with the land line number provided
+    %h2 Info:
+    %ol
+      %li 
+        %b Show Title 
+        = " - #{@episode.title} - Please let me know if you have a better idea for a title."
+      %li
+        %b Length of Interview 
+        = "- please allocate one hour, but the interview should only take about 30 minutes."
+      %li 
+        %b Recording Date
+        = " - #{@episode.recording_datetime}"
+      %li 
+        %b Air Date
+        = " - #{@episode.at_datetime}"
+      %li
+        %b Call instructions
+        = " - You will need to dial into into the station at #{@episode.guest_call_in_number} with the land line number provided."
+        - if @episode.live?
+          = "Since the show is live, please call in 5 or 10 minutes before the recording is scheduled to start."
 
-    Things we need from you:
-    1) A brief bio of the guest 
-    2) The land line phone number you will be calling in with, just in case there are problems calling.
-    3) A list of ten or more questions for us to ask you on the topic. 
-    4) Show Title(optional) - "Technology and Education Innovations" - feel free to change
-    5) Show Description(optional) - This is what we will use to go on the blog.
+    %h2 Things we need from you:
+    %ol 
+      - if @episode.guest.bio.empty?
+        %li A brief bio of the guest 
+      - if @episode.guest.land_line_phone.empty?  
+        %li The land line phone number the guest will be calling in with, just in case there are problems calling.
+      - if @episode.questions.empty?  
+        %li A list of ten or more questions for us to ask the guest on the topic. 
+      - if @episode.description
+        %li Show Description (optional) - This is what we will use to go on the blog.

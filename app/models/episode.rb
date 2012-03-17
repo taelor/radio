@@ -34,6 +34,10 @@ class Episode < ActiveRecord::Base
     guest ? guest.full_name : "None"
   end
   
+  def guest_call_in_number
+    live? ?  "866-536-1100" : "602-248-1468"
+  end
+  
   def shortened_title
     the_title = title.size > 30 ? "#{title[0..27]}..." : title 
     "#{air_datetime.to_date} - #{the_title}"
