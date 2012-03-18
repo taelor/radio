@@ -69,6 +69,10 @@ class Episode < ActiveRecord::Base
     !live?
   end
   
+  def email_recipients
+    [ host.email, guest.email, publicists.collect(&:email), User.admins.collect(&:email) ].flatten.compact.reject(&:blank?)
+  end
+  
   def recording_description
     if live?
       "#{air_date} - #{recording_datetime.strftime('LIVE at%l %p ET')}"
