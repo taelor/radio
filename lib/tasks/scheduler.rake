@@ -1,6 +1,6 @@
 desc "This task is called by the Heroku scheduler add-on"
 task :deliver_morning_emails => :environment do  
-  if Date.today.monday?
+  if Date.today.cwday == 1
     current_episode = Episode.where(:air_datetime.gt => Date.today).last
     puts "Delivering This week's schedule"
     puts EpisodeMailer.schedule(current_episode).deliver
