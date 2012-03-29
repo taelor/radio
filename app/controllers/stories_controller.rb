@@ -1,3 +1,9 @@
 class StoriesController < RadioController
-  inherit_resources
+  def sort
+    Story.find(params[:story]).each do |item|
+      item.position = params['story'].index(item.id.to_s) + 1
+      item.save
+    end
+    render :nothing => true
+  end
 end

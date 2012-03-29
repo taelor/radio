@@ -5,8 +5,8 @@ class Episode < ActiveRecord::Base
   belongs_to :guest, :class_name => "User"
   belongs_to :host, :class_name => "User"
 
-  has_many :stories
-  has_many :questions
+  has_many :stories, :order => "position"
+  has_many :questions, :order => "position"
 
   accepts_nested_attributes_for :stories,
       :reject_if => proc { |attributes| attributes['title'].blank? }

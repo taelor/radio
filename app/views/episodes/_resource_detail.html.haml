@@ -5,19 +5,23 @@
 %p= resource.description
 %h3= "WIR"
 %hr
-%ol
+%ol#stories
   - resource.stories.each do |story|
-    - if story.url.to_s.empty?
-      %li= story.title
-    - else
-      %li= link_to story.title, story.url
+    %li{:id => "story_#{story.id}"}
+      %span.handle [drag]
+      - if story.url.to_s.empty?
+        = story.title
+      - else
+        = link_to story.title, story.url
 
 %br    
 %h3= raw "Questions for #{link_to(resource.guest_name, resource.guest)} (#{mail_to(resource.guest.email, :email)})"
 %hr
-%ol
+%ol#questions
   - resource.questions.each do |question|
-    %li= question.body
+    %li{:id => "question_#{question.id}"}
+      %span.handle [drag]
+      =question.body
 
 - if !resource.publicists.empty?
   %h3 Publicists

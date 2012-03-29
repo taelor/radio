@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110515212930) do
+ActiveRecord::Schema.define(:version => 20120329023919) do
 
   create_table "conferences", :force => true do |t|
     t.date     "start_date"
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20110515212930) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   create_table "roles", :force => true do |t|
@@ -67,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20110515212930) do
     t.integer  "episode_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   create_table "users", :force => true do |t|

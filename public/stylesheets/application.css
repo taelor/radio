@@ -419,3 +419,5 @@ table.detail th{
   padding: 0 .7em;
   margin-bottom: .7em;
 }
+
+.handle:hover{cursor: move;}

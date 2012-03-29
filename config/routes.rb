@@ -9,7 +9,11 @@ Radio::Application.routes.draw do
   resources :conferences
 
   resources :episodes do
-    resources :questions
+    resources :questions do
+      collection do
+        post 'sort'
+      end
+    end
     resources :stories
     
     collection do
@@ -21,6 +25,16 @@ Radio::Application.routes.draw do
       post 'send_email'
     end
   end
+  
+  #just for sorting
+  resources :questions do
+    post :sort, on: :collection
+  end
+  
+  resources :stories do
+    post :sort, on: :collection
+  end
+  
   resources :guests
   resources :hosts
   resources :users

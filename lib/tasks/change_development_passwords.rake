@@ -1,6 +1,6 @@
 namespace :radio do
   task :change_development_passwords => :environment do
-    exit if RAILS_ENV == "production"
+    exit if Rails.env == "production"
     "Changing all users passwords to the same developement default:\n\n"
     User.all.each do |user|
       puts "Changing #{user} password"

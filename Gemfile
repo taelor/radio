@@ -5,6 +5,7 @@ gem 'rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'acts_as_list'
 gem 'pg'
 gem 'inherited_resources'
 gem 'has_scope'
