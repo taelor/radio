@@ -4,7 +4,7 @@
     %p.meta
       %span.date= episode.air_datetime.to_date
       %span.posted= "Guest: #{episode.guest.try(:full_name)}"
-      - if current_user.has_permission_to?(:edit, episode)
+      - if current_user and current_user.has_permission_to?(:edit, episode)
         %span.posted
           = link_to "Edit", [:edit, episode]
     <div style="clear: both;">&nbsp;</div>

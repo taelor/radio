@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120329033223) do
+ActiveRecord::Schema.define(:version => 20120406221853) do
 
   create_table "conferences", :force => true do |t|
     t.date     "start_date"
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(:version => 20120329033223) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "audio_link"
+    t.string   "duration"
+    t.integer  "episode_number"
   end
 
   create_table "pitches", :force => true do |t|

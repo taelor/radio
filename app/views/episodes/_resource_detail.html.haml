@@ -2,31 +2,35 @@
   =raw detail_row "Air Time: ", resource.air_datetime.to_s(:radio)
   =raw detail_row "Recording Time: ", resource.recording_datetime.to_formatted_s(:radio)
     
-%p= resource.description
-%h3= "WIR"
+%p= simple_format(resource.description)
+%h3= "Week In Review Links"
 %hr
 %ol#stories
   - resource.stories.each do |story|
     %li{:id => "story_#{story.id}"}
-      %span.handle [drag]
+      - if current_user.try(:super_user?)
+        %span.handle [drag]
       - if story.url.to_s.empty?
         = story.title
       - else
         = link_to story.title, story.url
 
-%br    
-%h3= raw "Questions for #{link_to(resource.guest_name, resource.guest)} (#{mail_to(resource.guest.email, :email)})"
-%hr
-%ol#questions
-  - resource.questions.each do |question|
-    %li{:id => "question_#{question.id}"}
-      %span.handle [drag]
-      =question.body
-
-- if !resource.publicists.empty?
-  %h3 Publicists
+%br
+- if current_user.try(:super_user?)
+  %h3= "Questions for #{link_to(resource.guest_name, resource.guest)} (#{mail_to(resource.guest.email, :email)})".html_safe
   %hr
-  - resource.publicists.each do |publicist|
-    = link_to publicist.to_s, publicist
-    =raw "(#{mail_to(publicist.email, :email)})"
-    %br
+  %ol#questions
+    - resource.questions.each do |question|
+      %li{:id => "question_#{question.id}"}
+        - if current_user.try(:super_user?)
+          %span.handle [drag]
+        =question.body
+
+  - if !resource.publicists.empty?
+    %h3 Publicists
+    %hr
+    - resource.publicists.each do |publicist|
+      = link_to publicist.to_s, publicist
+      =raw "(#{mail_to(publicist.email, :email)})"
+      %br
+    

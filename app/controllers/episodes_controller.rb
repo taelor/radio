@@ -1,6 +1,10 @@
 class EpisodesController < RadioController
   inherit_resources
   
+  respond_to :html, :pdf, :rss
+  
+  skip_before_filter :authenticate_user!, :only => [ :show, :index]
+  
   def script
     resource
     respond_to do |format|

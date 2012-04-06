@@ -18,24 +18,23 @@
       <!-- end #header -->
       #menu
         %ul
-          - if current_user
-            = raw layout_menu_item("Episodes", :episodes)
+          = layout_menu_item("Episodes", :episodes)
           - if current_user and current_user.super_user?
-            = raw layout_menu_item("Pitches", :pitches)
-            = raw layout_menu_item("Users", :users)
-            = raw layout_menu_item("Conferences", :conferences)
-          = raw layout_menu_item("About", :about)
-          = raw layout_menu_item("Contact", :contact)
+            = layout_menu_item("Pitches", :pitches)
+            = layout_menu_item("Users", :users)
+            = layout_menu_item("Conferences", :conferences)
+          = layout_menu_item("About", :about)
+          = layout_menu_item("Contact", :contact)
           - if current_user
-            =raw layout_menu_item("Logout", :logout)
+            = layout_menu_item("Logout", :logout)
           - else 
-            =raw layout_menu_item("Login", :login)
+            = layout_menu_item("Login", :login)
 
       <!-- end #menu -->
       #page
         #page-bgtop
           #page-bgbtm
-            #content{:style => current_user ? "" : 'float:left;width:100%'}
+            #content
               - flash.each do |key, message|
                 - if key == :notice
                   - key = :highlight
@@ -55,14 +54,19 @@
               = yield 
   			      
       <!-- end #content -->
-      - if current_user
-        #sidebar
-          %ul
-            %li
-              %h2 Recent and Upcoming Shows
-              %ul
-                - Episode.limit(6).each do |episode|
-                  %li= link_to episode.shortened_title, episode, :class => "truncate"
+
+      #sidebar
+        %ul
+          %li
+            %h2 Upcoming Shows
+            %ul
+              - Episode.where{air_datetime > Date.today}.each do |episode|
+                %li= link_to episode.shortened_title, episode, :class => "truncate"        
+          %li
+            %h2 Recent Shows
+            %ul
+              - Episode.where{air_datetime < Date.today}.limit(6).each do |episode|
+                %li= link_to episode.shortened_title, episode, :class => "truncate"
               
       <!-- end #sidebar -->
       <div style="clear: both;">&nbsp;</div>

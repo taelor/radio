@@ -17,9 +17,6 @@
       $("#form_questions").hide();
       $("#form_stories").show();
     });
-    
-    $('#episode_air_time').prev().remove();
-    $('#episode_recording_time').prev().remove()
   });
   
 - (15 - @episode.questions.size).times { @episode.questions.build }
@@ -47,6 +44,8 @@
         = form.input :air_time, :as => :time_picker
         = form.input :recording_date, :as => :date_picker
         = form.input :recording_time, :as => :time_picker
+        = form.input :audio_link
+        = form.input :duration
         
       = form.input :title
       = form.input :description
