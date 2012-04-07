@@ -18,6 +18,8 @@ class Episode < ActiveRecord::Base
   
   scope :ascending, :order => 'air_datetime ASC'
   
+  scope :have_audio, where("audio_link is not null and audio_link <> ''")
+  
   def script_name
     "#{air_datetime.strftime('%Y%m%d')} TechTalk Script - #{} - #{guest_name} - #{recording_datetime.strftime('%B %e at%l %p ET')}"
   end
