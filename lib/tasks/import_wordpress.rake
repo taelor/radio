@@ -13,7 +13,7 @@ task :import_workbook => :environment do
     first_name = guest_array.first
     last_name = guest_array.last
     
-    title = title.gsub('"', '').gsub('“', '').gsub('”', '')
+    title = title.gsub('"', '').gsub("\u201C", '').gsub("\u201D", '')
     
     puts title
     
