@@ -18,7 +18,7 @@ xml.rss :version => "2.0", "xmlns:itunes" => "http://www.itunes.com/dtds/podcast
       xml.itunes :email, "techtalk@imi-us.com"
     end
     xml.itunes :category, text: "Technology"
-    xml.itunes :image, href: "https://imitechtalk.files.wordpress.com/2012/04/logo.png"
+    xml.itunes :image, href: "http://imitechtalk.files.wordpress.com/2012/04/logo.png"
     
     @episodes.have_audio.each do |episode|
       xml.item do

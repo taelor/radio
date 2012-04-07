@@ -1,3 +1,18 @@
+require 'wpxml_parser'
+
+
+
+module WpxmlParser
+  class Blog  
+    def posts
+      @xml.xpath('//item').map do |item|
+        Post.new(item)
+      end.select{|p| (p.post_type == 'page' || p.post_type == "post") && p.status == 'publish'}
+    end
+  end
+end
+
+
 desc "Imports imitechtalk.com from tech talk workbook archive"
 
 task :import_workbook => :environment do 
@@ -37,23 +52,23 @@ task :import_workbook => :environment do
   
 end
 
+task :import_audio_links => :environment do  
+
+  Episode.where{air_datetime > "2010-01-01".to_datetime}.each { |e|
+    date = e.air_date.to_s(:db)
+    e.audio_link = "http://imitechtalk.com/mp3/#{date.split("-").first}/#{date.gsub("-", "")}_TechTalk.mp3"
+    e.save
+    puts e.audio_link
+  }.count
+  
+end
+
 desc "Imports imitechtalk.com from wordpress"
 
 task :import_wordpress => :environment do  
   xml_document = File.open("#{Rails.root}/tmp/imitechtalk.wordpress.2012-04-07.xml")
-  doc = Nokogiri::XML(xml_document)
-  
-  module WpxmlParser
-    class Blog  
-      def posts
-        @xml.xpath('//item').map do |item|
-          Post.new(item)
-        end.select{|p| (p.post_type == 'page' || p.post_type == "post") && p.status == 'publish'}
-      end
-    end
-  end
 
-  posts = Blog.new(xml_document).posts.sort{|a,b| a.date.to_date <=> b.date.to_date}
+  posts = WpxmlParser::Blog.new(xml_document).posts.sort{|a,b| a.date.to_date <=> b.date.to_date}
   
   posts.each { |post|
     title = post.title
