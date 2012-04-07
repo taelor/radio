@@ -7,17 +7,16 @@ task :import_workbook => :environment do
   File.open("#{Rails.root}/tmp/techtalk_workbook_archive.csv").readlines.each { |line|
     date_string, guest_string, title = line.split("\t")
     
+    title = title.gsub('"', '').gsub("\u201C", '').gsub("\u201D", '')
+    
     date = date_string.to_date
     
     guest_array = guest_string.split(" ")
     first_name = guest_array.first
     last_name = guest_array.last
     
-    title = title.gsub('"', '').gsub("\u201C", '').gsub("\u201D", '')
+    guest = User.find_by_first_name_and_last_name(first_name, last_name)    
     
-    puts title
-    
-    guest = User.find_by_first_name_and_last_name(first_name, last_name)
     if guest.nil?
       guest = User.create(
         first_name: first_name,
