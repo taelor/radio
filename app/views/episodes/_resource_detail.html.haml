@@ -1,6 +1,7 @@
 %table{ :class =>"#{resource.class.to_s.downcase} detail" }
-  =raw detail_row "Air Time: ", resource.air_datetime.to_s(:radio)
-  =raw detail_row "Recording Time: ", resource.recording_datetime.to_formatted_s(:radio)
+  = detail_row "Air Time: ", resource.air_datetime.to_s(:radio)
+  - if resource.recording_datetime
+    = detail_row "Recording Time: ", resource.recording_datetime.to_formatted_s(:radio)
     
 %p= simple_format(resource.description)
 %h3= "Week In Review Links"

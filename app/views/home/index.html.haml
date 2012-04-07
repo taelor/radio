@@ -1,1 +1,5 @@
-<h1>Welcome to IMI's Tech Talk Management Program</h1>
+%h1
+  = @recent_episodes.first.to_s
+%hr
+
+= render "episodes/resource_detail", resource: @recent_episodes.first

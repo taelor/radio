@@ -68,7 +68,7 @@ a:hover {
 #logo {
 	float: left;
 	height: 90px;
-	margin: 0;
+	margin: 10px;
 	background: url(/images/img04.jpg) no-repeat left top;
 	padding-top: 30px;
 	color: #000000;

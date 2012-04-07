@@ -58,14 +58,14 @@
       #sidebar
         %ul
           %li
-            %h2 Upcoming Shows
+            %h2 Upcoming Episodes
             %ul
               - Episode.where{air_datetime > Date.today}.each do |episode|
                 %li= link_to episode.shortened_title, episode, :class => "truncate"        
           %li
-            %h2 Recent Shows
+            %h2 Recent Episodes
             %ul
-              - Episode.where{air_datetime < Date.today}.limit(6).each do |episode|
+              - @recent_episodes.each do |episode|
                 %li= link_to episode.shortened_title, episode, :class => "truncate"
               
       <!-- end #sidebar -->

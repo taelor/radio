@@ -93,7 +93,4 @@ task :import_wordpress => :environment do
       end
     end
   }.count
-    
-  
-  
 end
