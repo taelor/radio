@@ -68,6 +68,7 @@ GEM
     mime-types (1.17.2)
     multi_json (1.1.0)
     netrc (0.7.1)
+    nokogiri (1.5.2)
     orm_adapter (0.0.6)
     pg (0.13.2)
     polyamorous (0.5.0)
@@ -137,6 +138,8 @@ GEM
     warden (1.1.1)
       rack (>= 1.0)
     wicked_pdf (0.7.2)
+    wpxml_parser (0.0.1)
+      nokogiri
 
 PLATFORMS
   ruby
@@ -150,9 +153,11 @@ DEPENDENCIES
   heroku
   inherited_resources
   jquery-rails
+  nokogiri
   pg
   rails
   squeel
   taps
   unicorn
   wicked_pdf
+  wpxml_parser

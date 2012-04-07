@@ -16,6 +16,8 @@ gem "devise"
 gem 'unicorn'
 gem "squeel"
 gem "wicked_pdf"
+gem "nokogiri"
+gem 'wpxml_parser'
 
 group :development, :test do
   gem 'taps', :require => false

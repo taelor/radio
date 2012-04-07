@@ -24,9 +24,9 @@ class Episode < ActiveRecord::Base
   
   def title
     if attributes["title"].to_s.empty?
-      "# #{self.id} (Title Needed)"
+      "##{episode_number} - (Title Needed)"
     else
-      "# #{self.id} #{attributes['title']}"
+      "##{episode_number} - #{attributes['title']}"
     end
   end
   
