@@ -54,19 +54,19 @@
               = yield 
   			      
       <!-- end #content -->
-
-      #sidebar
-        %ul
-          %li
-            %h2 Upcoming Episodes
-            %ul
-              - Episode.where{air_datetime > Date.today}.each do |episode|
-                %li= link_to episode.shortened_title, episode, :class => "truncate"        
-          %li
-            %h2 Recent Episodes
-            %ul
-              - @recent_episodes.each do |episode|
-                %li= link_to episode.shortened_title, episode, :class => "truncate"
+      - cache(:sidebar) do 
+        #sidebar
+          %ul
+            %li
+              %h2 Upcoming Episodes
+              %ul
+                - Episode.where{air_datetime > Date.today}.each do |episode|
+                  %li= link_to episode.shortened_title, episode, :class => "truncate"        
+            %li
+              %h2 Recent Episodes
+              %ul
+                - @recent_episodes.each do |episode|
+                  %li= link_to episode.shortened_title, episode, :class => "truncate"
               
       <!-- end #sidebar -->
       <div style="clear: both;">&nbsp;</div>
