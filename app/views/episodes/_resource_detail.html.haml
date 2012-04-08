@@ -2,8 +2,10 @@
   = detail_row "Air Time: ", resource.air_datetime.to_s(:radio)
   - if resource.recording_datetime
     = detail_row "Recording Time: ", resource.recording_datetime.to_formatted_s(:radio)
+  = detail_row "Tags: ", resource.tags.collect{|t| link_to(t.to_s, "/tags/#{t.name}") }.join(", ")
     
 %p= simple_format(resource.description)
+
 %h3= "Week In Review Links"
 %hr
 %ol#stories

@@ -26,6 +26,8 @@ Radio::Application.routes.draw do
     end
   end
   
+  match 'tags/:name' => "tags#show"
+  
   #just for sorting
   resources :questions do
     post :sort, on: :collection

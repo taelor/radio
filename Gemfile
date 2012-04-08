@@ -6,17 +6,19 @@ gem 'rails'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'acts_as_list'
-gem 'pg'
+gem 'acts-as-taggable-on'
+gem 'dalli'
+gem "devise"
 gem 'inherited_resources'
 gem 'has_scope'
 gem 'haml'
-gem 'formtastic'
 gem "jquery-rails"
-gem "devise"
+gem 'formtastic'
+gem "nokogiri"
+gem 'pg'
 gem 'unicorn'
 gem "squeel"
 gem "wicked_pdf"
-gem "nokogiri"
 gem 'wpxml_parser'
 
 group :development, :test do

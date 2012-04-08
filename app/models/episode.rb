@@ -1,4 +1,5 @@
 class Episode < ActiveRecord::Base
+  acts_as_taggable
   
   datetime_hack :recording_datetime, :air_datetime
   
