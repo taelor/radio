@@ -5,15 +5,8 @@ class EpisodesController < RadioController
   
   skip_before_filter :authenticate_user!, :only => [ :show, :index]
   
-  def update
-    update! do |success, failure|
-      success.html { 
-        expire_fragment('sidebar')
-        redirect_to resource_path
-      }
-    end
-  end
-  
+  after_filter :exipre_cache_sidebar, :only => [ :create, :update, :destroy]
+    
   def script
     resource
     respond_to do |format|
@@ -73,6 +66,10 @@ class EpisodesController < RadioController
       File.open(Rails.root.join('tmp', "#{resource.script_name}.pdf"), 'wb') do |file|
         file << pdf
       end
+    end
+    
+    def expire_fragment_sidebar
+      expire_fragment('sidebar')
     end
     
 end
