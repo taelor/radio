@@ -5,7 +5,7 @@ class EpisodesController < RadioController
   
   skip_before_filter :authenticate_user!, :only => [ :show, :index]
   
-  after_filter :exipre_cache_sidebar, :only => [ :create, :update, :destroy]
+  after_filter :expire_fragment_sidebar, :only => [ :create, :update, :destroy]
     
   def script
     resource
