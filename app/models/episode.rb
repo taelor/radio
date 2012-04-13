@@ -21,6 +21,9 @@ class Episode < ActiveRecord::Base
   
   scope :have_audio, where("audio_link is not null and audio_link <> ''")
   
+  after_save :expire_fragment_caches
+  after_destroy :expire_fragment_caches
+  
   def script_name
     "#{air_datetime.strftime('%Y%m%d')} TechTalk Script - #{} - #{guest_name} - #{recording_datetime.strftime('%B %e at%l %p ET')}"
   end
@@ -87,4 +90,10 @@ class Episode < ActiveRecord::Base
   def to_s
     title
   end
+  
+  protected
+    
+    def expire_fragment_caches
+      expire_fragment('sidebar')
+    end
 end
