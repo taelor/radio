@@ -5,6 +5,15 @@ class EpisodesController < RadioController
   
   skip_before_filter :authenticate_user!, :only => [ :show, :index]
   
+  def update
+    update! do |success, failure|
+      success.html { 
+        expire_fragment('sidebar')
+        redirect_to resource_path
+      }
+    end
+  end
+  
   def script
     resource
     respond_to do |format|
