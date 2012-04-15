@@ -44,6 +44,7 @@ Radio::Application.routes.draw do
   
   match '/about' => 'home#about', :as => :about
   match '/contact' => 'home#contact', :as => :contact
+  match '/staff' => 'home#staff', :as => :staff
   
   root :to => "home#index"
   
