@@ -1,4 +1,7 @@
 module ApplicationHelper
+  
+  include ActsAsTaggableOn::TagsHelper
+  
   def layout_menu_item(label, url)
     if controller_name == "home"
       if action_name == label.downcase

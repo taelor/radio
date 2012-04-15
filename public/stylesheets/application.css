@@ -421,3 +421,11 @@ table.detail th{
 }
 
 .handle:hover{cursor: move;}
+
+.tag1 { font-size: 0.8em; }
+.tag2 { font-size: 1.0em; }
+.tag3 { font-size: 1.2em; }
+.tag4 { font-size: 1.4em; }
+.tag5 { font-size: 1.6em; }
+.tag6 { font-size: 1.8em; }
+.tag7 { font-size: 2.0em; }

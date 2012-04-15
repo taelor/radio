@@ -1,0 +1,5 @@
+%h2 Tag Cloud
+%hr
+%p
+  - tag_cloud(Episode.tag_counts.order("name"), %w(tag1 tag3 tag5 tag7)) do |tag, css_class|
+    = link_to tag.name, "/tags/#{tag.name}", :class => css_class

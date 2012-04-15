@@ -26,6 +26,7 @@ Radio::Application.routes.draw do
     end
   end
   
+  match 'tags' => "tags#index"
   match 'tags/:name' => "tags#show"
   
   #just for sorting
