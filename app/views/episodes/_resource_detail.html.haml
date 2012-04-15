@@ -3,9 +3,25 @@
   - if resource.recording_datetime
     = detail_row "Recording Time: ", resource.recording_datetime.to_formatted_s(:radio)
   = detail_row "Tags: ", resource.tags.collect{|t| link_to(t.to_s, "/tags/#{t.name}") }.join(", ")
-    
+      
 %p= simple_format(resource.description)
 
+- if !resource.audio_link.blank?
+  #mediaplayer
+  %script{type: "text/javascript"}
+    :erb
+      jwplayer('mediaplayer').setup({
+          'flashplayer': '/jwplayer/player.swf',
+          'id': 'playerID',
+          'width': '560',
+          'height': '24',
+          'file': '<%= resource.audio_link %>',
+          'controlbar': 'bottom'
+        });
+  %p
+    Download:
+    = link_to "MP3 Audio", resource.audio_link
+  
 %h3= "Week In Review Links"
 %hr
 %ol#stories
@@ -36,4 +52,3 @@
       = link_to publicist.to_s, publicist
       =raw "(#{mail_to(publicist.email, :email)})"
       %br
-    
