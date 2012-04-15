@@ -1,7 +1,10 @@
 class EpisodesController < RadioController
   inherit_resources
   
-  respond_to :html, :pdf, :rss
+  has_scope :published
+  has_scope :page, :default => 1
+  
+  respond_to :html, :pdf, :rss, :js
   
   skip_before_filter :authenticate_user!, :only => [ :show, :index]
   
@@ -41,6 +44,10 @@ class EpisodesController < RadioController
   end
   
   protected
+  
+    def collection
+      @episodes = end_of_association_chain.published.includes(:tags, :guest)
+    end
     
     def authorized?
       return true if ["index", "show"].include?(action_name) or current_user.admin? or current_user.host?

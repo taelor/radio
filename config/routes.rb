@@ -9,6 +9,9 @@ Radio::Application.routes.draw do
   resources :conferences
 
   resources :episodes do
+    
+    get 'page/:page', :action => :index, :on => :collection
+    
     resources :questions do
       collection do
         post 'sort'

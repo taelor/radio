@@ -7,4 +7,23 @@
       - if current_user and current_user.has_permission_to?(:edit, episode)
         %span.posted
           = link_to "Edit", [:edit, episode]
-    <div style="clear: both;">&nbsp;</div>
+    <div style="clear: both;"></div>
+    %strong Tags:
+    = episode.tags.collect{|t| link_to(t.to_s, "/tags/#{t.name}") }.join(", ").html_safe
+    = simple_format episode.description
+    - if !episode.audio_link.blank?
+      %div{:id => "mediaplayer-episode-#{episode.episode_number}"}
+      %script{type: "text/javascript"}
+        :erb
+          jwplayer('<%= "mediaplayer-episode-#{episode.episode_number}" %>').setup({
+              'flashplayer': '/jwplayer/player.swf',
+              'id': '<%= episode.episode_number %>',
+              'width': '560',
+              'height': '24',
+              'file': '<%= episode.audio_link %>',
+              'controlbar': 'bottom'
+            });
+      %p
+        Download:
+        = link_to "MP3 Audio", episode.audio_link
+    %br

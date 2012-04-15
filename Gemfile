@@ -20,6 +20,7 @@ gem 'unicorn'
 gem "squeel"
 gem "wicked_pdf"
 gem 'wpxml_parser'
+gem 'kaminari'
 
 group :development, :test do
   gem 'taps', :require => false

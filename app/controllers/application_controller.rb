@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   
   before_filter :recent_episodes
   
-  
   protected
   
     def recent_episodes

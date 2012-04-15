@@ -1,6 +1,8 @@
 class Episode < ActiveRecord::Base
   acts_as_taggable
   
+  paginates_per 5
+  
   datetime_hack :recording_datetime, :air_datetime
   
   belongs_to :guest, :class_name => "User"
@@ -20,6 +22,8 @@ class Episode < ActiveRecord::Base
   scope :ascending, :order => 'air_datetime ASC'
   
   scope :have_audio, where("audio_link is not null and audio_link <> ''")
+    
+  scope :published, lambda { where('air_datetime < ?', Date.today) }  
   
   def script_name
     "#{air_datetime.strftime('%Y%m%d')} TechTalk Script - #{} - #{guest_name} - #{recording_datetime.strftime('%B %e at%l %p ET')}"
