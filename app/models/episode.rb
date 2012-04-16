@@ -38,8 +38,8 @@ class Episode < ActiveRecord::Base
   end
   
   def shortened_title
-    the_title = title.size > 30 ? "#{title[0..27]}..." : title 
-    "#{air_datetime.to_date} - #{self}"
+    the_title = title.size > 30 ? "#{self.to_s[0..27]}..." : title 
+    "#{air_datetime.to_date} - #{the_title}"
   end
   
   def publicists
