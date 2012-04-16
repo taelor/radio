@@ -29,14 +29,6 @@ class Episode < ActiveRecord::Base
     "#{air_datetime.strftime('%Y%m%d')} TechTalk Script - #{} - #{guest_name} - #{recording_datetime.strftime('%B %e at%l %p ET')}"
   end
   
-  def title
-    if attributes["title"].to_s.empty?
-      "##{episode_number} - (Title Needed)"
-    else
-      "##{episode_number} - #{attributes['title']}"
-    end
-  end
-  
   def guest_name
     guest ? guest.full_name : "None"
   end
@@ -47,7 +39,7 @@ class Episode < ActiveRecord::Base
   
   def shortened_title
     the_title = title.size > 30 ? "#{title[0..27]}..." : title 
-    "#{air_datetime.to_date} - #{the_title}"
+    "#{air_datetime.to_date} - #{self}"
   end
   
   def publicists
@@ -89,6 +81,10 @@ class Episode < ActiveRecord::Base
   end
   
   def to_s
-    title
+    if title.to_s.empty?
+      "##{episode_number} - (Title Needed)"
+    else
+      "##{episode_number} - #{title}"
+    end
   end
 end

@@ -22,7 +22,7 @@ xml.rss :version => "2.0", "xmlns:itunes" => "http://www.itunes.com/dtds/podcast
     
     @episodes.have_audio.each do |episode|
       xml.item do
-        xml.title episode.title
+        xml.title episode.to_s
         xml.description episode.description
         
         xml.itunes :author, author
