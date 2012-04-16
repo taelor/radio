@@ -33,6 +33,10 @@ class Episode < ActiveRecord::Base
     guest ? guest.full_name : "None"
   end
   
+  def host_call_in_number
+    live ? "602-253-9616" : "602-248-1467"
+  end
+  
   def guest_call_in_number
     live? ?  "866-536-1100" : "602-248-1468"
   end
