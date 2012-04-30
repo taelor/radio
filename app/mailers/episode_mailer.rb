@@ -17,7 +17,7 @@ class EpisodeMailer < RadioMailer
   def needed_items(episode)
     @episode = episode
     
-    to = [@episode.guest.email, "TechTalk@imi-us.com"].compact.reject(&:blank?)
+    to = [@episode.guest.email, publicists.collect(&:email), "TechTalk@imi-us.com"].compact.reject(&:blank?)
     
     mail(:to => to, :subject => "IMI's TechTalk - Needed Items - #{@episode.title}")
   end
