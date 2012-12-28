@@ -33,15 +33,15 @@ xml.rss :version => "2.0", "xmlns:itunes" => "http://www.itunes.com/dtds/podcast
         
         xml.itunes :image, href: "http://imitechtalk.files.wordpress.com/2012/04/logo.png"
         
-        xml.enclosure url: episode.audio_link
+        xml.enclosure url: episode.audio_link, type: "audio/mpeg"
         
         xml.guid episode.id
         
-        xml.pubdate episode.air_datetime.rfc2822
+        xml.pubDate episode.air_datetime.rfc2822
         
-        xml.itunes :duration, episode.duration
+        xml.itunes :duration, episode.duration if episode.duration.present?
         
-        xml.keywords "technology"
+        xml.itunes :keywords, "Technology"
         
       end
     end
