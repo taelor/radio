@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(:version => 20120408001503) do
     t.date     "end_date"
     t.string   "name"
     t.boolean  "has_press_pass"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "episodes", :force => true do |t|
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(:version => 20120408001503) do
     t.integer  "guest_id"
     t.integer  "host_id"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "audio_link"
     t.string   "duration"
     t.integer  "episode_number"
@@ -41,22 +41,22 @@ ActiveRecord::Schema.define(:version => 20120408001503) do
     t.string   "contact_name"
     t.string   "contact_email"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "public_relationships", :force => true do |t|
     t.integer  "guest_id"
     t.integer  "publicist_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "questions", :force => true do |t|
     t.integer  "episode_id"
     t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "position"
   end
 
@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(:version => 20120408001503) do
     t.text     "body"
     t.string   "source"
     t.integer  "episode_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "position"
   end
 
@@ -99,8 +99,8 @@ ActiveRecord::Schema.define(:version => 20120408001503) do
     t.text     "bio"
     t.string   "land_line_phone"
     t.string   "cell_phone"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
     t.string   "password_salt"
     t.string   "authentication_token"
@@ -118,8 +118,12 @@ ActiveRecord::Schema.define(:version => 20120408001503) do
     t.integer  "failed_attempts",                       :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
-    t.integer  "role_id"
     t.datetime "reset_password_sent_at"
   end
+
+  add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
+  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
 
 end
