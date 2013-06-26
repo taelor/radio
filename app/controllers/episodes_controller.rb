@@ -43,6 +43,37 @@ class EpisodesController < RadioController
     render "email"
   end
   
+  def wordpress
+    resource
+    client_id       = "4321"
+    client_secret   = "KLZMOtPtjt6iOq7LuEpNuEnClEYCBwnPpdysLQBgI5yKn03ZytAH74yX7vFnOjCs"
+    site            = 'https://public-api.wordpress.com'
+    redirect_uri    = "http://radio-director.heroku.com/wordpress/authorization"
+    
+    #attributes = {
+    #  body: {
+    #    client_id: client_id,
+    #    redirect_uri: redirect_uri,
+    #    response_type: "code"
+    #  }
+    #}
+    #@response = HTTParty.post("https://public-api.wordpress.com/oauth2/authorize", attributes)
+  end
+  
+  def publish_wordpress
+    access_token = "#{ENV['WORDPRESS_API_KEY']}%Ui" 
+    blog_id = "12483913" 
+    
+    attributes = {
+      ignore_errors: "true",
+      headers: {
+        "authorization" => "Bearer #{access_token}"
+      },
+      body: params[:post]
+    }
+    @response = HTTParty.post( "https://public-api.wordpress.com/rest/v1/sites/#{blog_id}/posts/new",  attributes )
+  end
+  
   protected
   
     def collection

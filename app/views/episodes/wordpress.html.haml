@@ -1,0 +1,14 @@
+= form_tag(publish_wordpress_episode_path(resource)) do 
+  - # crazy ass hack for the offset in time. since I left the time zone as UTC
+  - offset = TZInfo::Timezone.get('UTC').now.hour - TZInfo::Timezone.get('America/New_York').now.hour
+  = text_field_tag "post[date]", (resource.air_datetime + offset.hours).iso8601
+  %br
+  = text_field_tag "post[title]", resource.title
+  %br
+  = text_area_tag "post[content]", wordpress_content(resource), size: "100x30"
+  %br
+  = text_field_tag "post[tags]", resource.tag_list.join(", ")
+  %br
+  = text_field_tag "post[status]", "draft"
+  %br
+  = submit_tag

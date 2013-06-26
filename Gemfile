@@ -12,9 +12,11 @@ gem "devise"
 gem 'inherited_resources'
 gem 'has_scope'
 gem 'haml'
-gem "jquery-rails"
+gem 'httparty'
+gem 'jquery-rails'
 gem 'formtastic'
-gem "nokogiri"
+gem 'nokogiri'
+#gem 'oauth2'
 gem 'pg'
 gem 'unicorn'
 gem "squeel"

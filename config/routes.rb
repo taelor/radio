@@ -26,6 +26,8 @@ Radio::Application.routes.draw do
       get 'script'
       get 'email'
       post 'send_email'
+      get "wordpress"
+      post "publish_wordpress"
     end
   end
   
