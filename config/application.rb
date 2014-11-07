@@ -42,6 +42,8 @@ module Radio
     
     config.cache_store = :dalli_store
     
+    config.assets.initialize_on_precompile = false
+    
     config.after_initialize do
       ActionController::Base.asset_host = Proc.new do |source, request|
         if request.format == 'pdf'
