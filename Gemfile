@@ -26,5 +26,4 @@ gem 'kaminari'
 
 group :development, :test do
   gem 'taps', :require => false
-  gem 'heroku', "require" => false
 end
