@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 ruby '2.0.0'
 
-gem 'rails'
+gem 'rails', "3.2.20"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -25,7 +25,3 @@ gem "squeel"
 gem "wicked_pdf"
 gem 'wpxml_parser'
 gem 'kaminari'
-
-group :development, :test do
-  gem 'taps', :require => false
-end
