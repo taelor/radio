@@ -54,25 +54,25 @@
               = yield 
   			      
       <!-- end #content -->
-      - cache(:sidebar) do 
-        #sidebar
-          %ul
-            %li
-              %h2 Upcoming Episodes
-              %ul
-                - Episode.where{air_datetime > Date.today}.each do |episode|
-                  %li= link_to episode.shortened_title, episode, :class => "truncate"        
-            %li
-              %h2 Recent Episodes
-              %ul
-                - @recent_episodes.each do |episode|
-                  %li= link_to episode.shortened_title, episode, :class => "truncate"
-            
-            %li
-              %h2 Tag Cloud
-              %p
-                - tag_cloud(Episode.tag_counts.order("name"), %w(tag1 tag2 tag3 tag4)) do |tag, css_class|
-                  = link_to tag.name, "/tags/#{tag.name}", :class => css_class
+      <!-- - cache(:sidebar) do -->
+      #sidebar
+        %ul
+          %li
+            %h2 Upcoming Episodes
+            %ul
+              - Episode.where{air_datetime > Date.today}.each do |episode|
+                %li= link_to episode.shortened_title, episode, :class => "truncate"        
+          %li
+            %h2 Recent Episodes
+            %ul
+              - @recent_episodes.each do |episode|
+                %li= link_to episode.shortened_title, episode, :class => "truncate"
+          
+          %li
+            %h2 Tag Cloud
+            %p
+              - tag_cloud(Episode.tag_counts.order("name"), %w(tag1 tag2 tag3 tag4)) do |tag, css_class|
+                = link_to tag.name, "/tags/#{tag.name}", :class => css_class
                   
       <!-- end #sidebar -->
       <div style="clear: both;">&nbsp;</div>
