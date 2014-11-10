@@ -77,7 +77,7 @@ class EpisodesController < RadioController
   protected
   
     def collection
-      @episodes = end_of_association_chain.published.includes(:tags, :guest)
+      @episodes = end_of_association_chain.published.page(params[:page]).includes(:tags, :guest)
     end
     
     def authorized?
